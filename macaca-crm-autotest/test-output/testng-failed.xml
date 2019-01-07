@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" guice-stage="DEVELOPMENT" name="Failed suite [Maven_Test]" parallel="tests">
+  <test name="browsertest(failed)" parallel="tests">
+    <parameter name="browser" value="firefox"/>
+    <parameter name="url" value="http://www.baidu.com"/>
+    <classes>
+      <class name="cases.BrowserTest">
+        <methods>
+          <include name="quit"/>
+          <include name="browser" invocation-numbers="0 1 2"/>
+          <include name="beforetest"/>
+        </methods>
+      </class> <!-- cases.BrowserTest -->
+    </classes>
+  </test> <!-- browsertest(failed) -->
+</suite> <!-- Failed suite [Maven_Test] -->

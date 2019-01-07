@@ -1,0 +1,8 @@
+*.log
+/target/
+/screenshot/
+.settings
+.classpath
+.project
+*.sw*
+*.un~

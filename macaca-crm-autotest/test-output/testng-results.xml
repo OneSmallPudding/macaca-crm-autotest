@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Maven_Test" duration-ms="30391" started-at="2018-05-23T15:19:57Z" finished-at="2018-05-23T15:20:27Z">
+    <groups>
+    </groups>
+    <test name="browsertest" duration-ms="30391" started-at="2018-05-23T15:19:57Z" finished-at="2018-05-23T15:20:27Z">
+      <class name="cases.BrowserTest">
+        <test-method status="PASS" signature="beforetest(java.lang.String, java.lang.String)[pri:0, instance:cases.BrowserTest@6093dd95]" name="beforetest" is-config="true" duration-ms="3572" started-at="2018-05-23T23:19:57Z" finished-at="2018-05-23T23:20:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[http://www.baidu.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforetest -->
+        <test-method status="PASS" signature="browser(java.lang.String, java.lang.String)[pri:0, instance:cases.BrowserTest@6093dd95]" name="browser" duration-ms="8714" started-at="2018-05-23T23:20:01Z" data-provider="muke" finished-at="2018-05-23T23:20:09Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[fengluo]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[帅]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browser -->
+        <test-method status="PASS" signature="browser(java.lang.String, java.lang.String)[pri:0, instance:cases.BrowserTest@6093dd95]" name="browser" duration-ms="8635" started-at="2018-05-23T23:20:09Z" data-provider="muke" finished-at="2018-05-23T23:20:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[muke]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[棒]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browser -->
+        <test-method status="PASS" signature="browser(java.lang.String, java.lang.String)[pri:0, instance:cases.BrowserTest@6093dd95]" name="browser" duration-ms="8742" started-at="2018-05-23T23:20:18Z" data-provider="muke" finished-at="2018-05-23T23:20:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[fengluojifan]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[牛]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browser -->
+        <test-method status="PASS" signature="quit()[pri:0, instance:cases.BrowserTest@6093dd95]" name="quit" is-config="true" duration-ms="260" started-at="2018-05-23T23:20:27Z" finished-at="2018-05-23T23:20:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quit -->
+      </class> <!-- cases.BrowserTest -->
+    </test> <!-- browsertest -->
+  </suite> <!-- Maven_Test -->
+</testng-results>
