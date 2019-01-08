@@ -61,7 +61,7 @@ public class BaseTest {
         desiredCapabilities.put("desiredCapabilities", porps);
         webDriver.setWaitElementTimeout(50000);
         webDriver.setWaitElementTimeInterval(1000);
-        webDriver.initDriver(desiredCapabilities).maximize().get(Config.cmsUrl);
+        webDriver.initDriver(desiredCapabilities).get(Config.cmsUrl);
         webDriver.sleep(2000);
         webDriver.elementsByClassName("el-input__inner").get(0).sendKeys(Config.cmsUserName);
         webDriver.elementsByClassName("el-input__inner").get(1).sendKeys(Config.cmsUserPwd);

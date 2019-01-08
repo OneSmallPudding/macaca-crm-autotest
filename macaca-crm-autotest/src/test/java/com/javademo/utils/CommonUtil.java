@@ -148,10 +148,10 @@ public class CommonUtil {
     public  void getRefresh(MacacaClient webDriver)throws Exception{
         webDriver.sleep(2000);
         Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_META);
         robot.keyPress(KeyEvent.VK_R);
 //        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_META);
         robot.keyRelease(KeyEvent.VK_R);
         webDriver.sleep(2000);
     }//刷新网页
@@ -164,15 +164,15 @@ public class CommonUtil {
         webDriver.keys(new String(enter));
     }
     public  void clear(MacacaClient webDriver)throws Exception{
-        webDriver.sleep(500);
+        webDriver.sleep(2000);
         Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_META);
+        robot.delay(2000);
         robot.keyPress(KeyEvent.VK_A);
 
         robot.keyRelease(KeyEvent.VK_A);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_BACK_SPACE);
-        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        robot.keyRelease(KeyEvent.VK_META);
+
         webDriver.sleep(2000);
     }//关闭页面
     //按下右边箭头，按下enter 键

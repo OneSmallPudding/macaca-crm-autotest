@@ -29,8 +29,7 @@ public class testClue extends BaseTest{
     String  repeatTel8;
     CommonUtil commonUtil = new CommonUtil();
 
-
-  /* @Test(priority = 1)
+ @Test(priority = 1)
     public void test() throws Exception{
         gaodunCluePage.setDriver(webDriver);
         gaodunCluePage.addTest();
@@ -43,7 +42,7 @@ public class testClue extends BaseTest{
 //        //assertTrue(flag);
 //    };
     // 必须项为空，其他正常输入
-    @Test(priority = 2)
+  @Test(priority = 2)
     public void xsgl_1() throws Exception{
         gaodunCluePage.setDriver(webDriver);
         boolean flag  =gaodunCluePage.addClue_xsgl_1("确认");
@@ -370,19 +369,6 @@ public class testClue extends BaseTest{
         cluePage.setDriver(webDriver);
         cluePage.book();
     }
-    */
-    @Test(priority = 2)
-    public void xsgl_111() throws Exception{
-        gaodunCluePage.setDriver(webDriver);
-        boolean flag  =gaodunCluePage.addClue_xsgl_111("确认");
-        assertTrue(flag);
-    };
-    // 5个联系方式为空
-    @Test(priority = 3)
-    public void xsgl_11112() throws Exception{
-        gaodunCluePage.setDriver(webDriver);
-        boolean flag  =gaodunCluePage.addClue_xsgl_222("确认");
-        assertTrue(flag);
-    };
+
 }
 

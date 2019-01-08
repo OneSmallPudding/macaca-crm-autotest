@@ -6,3 +6,4 @@
 .project
 *.sw*
 *.un~
+.idea

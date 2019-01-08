@@ -33,7 +33,7 @@ public class GaodunCluePage extends BasePages {
     String repeatTelACCA;
 
     public void addTest(String tel,String project,String action) throws Exception{
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(5000);
         addClueRequire(project);
         addClueCommunication(tel);
@@ -52,7 +52,7 @@ public class GaodunCluePage extends BasePages {
     }
     public  boolean addClue()  throws  Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(0).sendKeys("汪蕾");// 姓名
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_LAB).get(2).click();// 性别
@@ -87,7 +87,7 @@ public class GaodunCluePage extends BasePages {
     };
     public  boolean addClue_xsgl_1(String action)  throws  Exception {
         boolean flag = true;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         String repeatTel=commonUtil.getTel();
         addClueCommunication(repeatTel);
@@ -104,7 +104,7 @@ public class GaodunCluePage extends BasePages {
     };
     public  boolean addClue_xsgl_2(String action)  throws  Exception {
         boolean flag = true;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         addClueRequire("毕马威");
         addClueAction(action);
         webDriver.sleep(2000);
@@ -117,12 +117,12 @@ public class GaodunCluePage extends BasePages {
     };
     public  boolean addClue_xsgl_3(String action,String tel)  throws  Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         addClueRequire("毕马威");
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_PHONE).sendKeys(tel);// 手机号
         addClueAction(action);
-        webDriver.sleep(2000);
+        webDriver.sleep(5000);
         String name  = getNameByJs();
         System.out.print("====================================================="+name);
         if(name.equals("") || name == null){
@@ -133,7 +133,7 @@ public class GaodunCluePage extends BasePages {
     };
     public  boolean addClue_xsgl_4(String action,String tel)  throws  Exception {
         boolean flag = true;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         addClueRequire("毕马威");
         addClueCommunication(tel);
@@ -152,12 +152,12 @@ public class GaodunCluePage extends BasePages {
     };
     public  boolean addClue_xsgl_5(String action,String tel)  throws  Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         addClueRequire("阿米巴");
         addClueCommunication(tel);
         addClueAction(action);
-        webDriver.sleep(2000);
+        webDriver.sleep(5000);
         String phone  = getPthonByJs();
         System.out.print(phone+"===============================");
         if(phone.equals("") || phone == null){
@@ -179,6 +179,7 @@ public class GaodunCluePage extends BasePages {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name",str1);
         handler.switchWindow(jsonObject);
+        webDriver.sleep(3000);
         try {
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(2).click();// 关闭
             flag = true;
@@ -210,7 +211,6 @@ public class GaodunCluePage extends BasePages {
     };// 根据是否可以勾选
     public boolean queryOwner_xsgl_13() throws  Exception{
         boolean flag ;
-//        String repeatTel13 = "10505973503";//crm项目别人名下的手机号，最后写入config
         searchPthone(Config.repeatTel13);
         webDriver.sleep(1000);
         try {
@@ -309,7 +309,7 @@ public class GaodunCluePage extends BasePages {
        searchByPthone(repeatTel1);
         //       searchByPthone("10606992007");
         String SQL = "SELECT Tpo_Base_SourceDetails.FullName FROM crm_base.Tpo_Base_SourceDetails WHERE CreateTime>DATE_FORMAT( date_add( curdate( ), INTERVAL - 3 MONTH ), '%Y-%m-%d 23:59:59' ) ORDER BY CreateTime DESC;";
-        String  project =searchPlan(SQL);
+        String  project =searchPlan(SQL,repeatTel1);
         String[] projectList=project.split("=");
         String  project1=projectList[0];
         String  project2=projectList[1];
@@ -324,7 +324,7 @@ public class GaodunCluePage extends BasePages {
         //      searchByPthone("10508832589");
         //  searchByPthone("18812341234");
         String SQL = "SELECT Tpo_Base_SourceDetails.FullName FROM crm_base.Tpo_Base_SourceDetails WHERE CreateTime<DATE_FORMAT( date_add( curdate( ), INTERVAL - 3 MONTH ), '%Y-%m-%d 23:59:59' ) ORDER BY CreateTime DESC;";
-        String  project =searchPlan(SQL);
+        String  project =searchPlan(SQL,repeatTel2);
         String[] projectList=project.split("=");
         String  project1=projectList[0];
         String  project2=projectList[1];
@@ -407,7 +407,7 @@ public class GaodunCluePage extends BasePages {
     }
     public boolean follow_xsgl_47()throws Exception{
         boolean flag;
-        webDriver.maximize().get(Config.cmsCluesUrl);
+        webDriver.get(Config.cmsCluesUrl);
         searchByPthone(repeatTel1);
         //searchByPthone("10706530322");
         webDriver.elementByLinkText("跟进").click();//跟进
@@ -462,7 +462,7 @@ public class GaodunCluePage extends BasePages {
     }
     public boolean follow_xsgl_51()throws Exception{
         boolean flag;
-        webDriver.maximize().get(Config.cmsCluesUrl);//searchByPthone(repeatTel1);
+        webDriver.get(Config.cmsCluesUrl);//searchByPthone(repeatTel1);
         searchByPthone(repeatTel1);
         // searchByPthone("10706530322");
         webDriver.elementByLinkText("跟进").click();//跟进
@@ -487,7 +487,7 @@ public class GaodunCluePage extends BasePages {
 
     public  boolean search_merge_clue(int i)  throws  Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BOX).get(0).click();
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BOX).get(1).click();
@@ -507,13 +507,13 @@ public class GaodunCluePage extends BasePages {
         if(name.equals("没有相关数据")){
             flag = true;
         }
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         return flag;
     };
 
     // 选择 1 条 或 3条线索合并。
     public  boolean addClue_merge(int i)  throws  Exception {
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
         boolean flag = false;
         for(int j = 0;j<i;j++){
@@ -524,7 +524,7 @@ public class GaodunCluePage extends BasePages {
         if(el != null){
             flag = true;
         }
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         return flag;
     }
 
@@ -533,7 +533,7 @@ public class GaodunCluePage extends BasePages {
     public boolean  allotClue_xsgl(int isBatch,String allotPerson) throws  Exception {
         //打开新增线索页面
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsAddClientUrl);
+        webDriver.get(Config.cmsAddClientUrl);
         webDriver.sleep(2000);
 
         //新增线索
@@ -548,7 +548,7 @@ public class GaodunCluePage extends BasePages {
 
         webDriver.sleep(2000);
         //回到线索列表页面
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
 
         //选择线索复选框
@@ -624,7 +624,7 @@ public class GaodunCluePage extends BasePages {
         boolean flag = false;
         tel = commonUtil.getTel();
         webDriver.sleep(2000);
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(3000);
         webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_MORE_BTN).click();
         webDriver.sleep(3000);
@@ -676,14 +676,14 @@ public class GaodunCluePage extends BasePages {
             webDriver.elementByClassName(GaodunCluePageUI.CLUE_NOTES).sendKeys("1881234123418812341234");// 备注
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(1).click();// 保存
             webDriver.sleep(2000);
-            commonUtil.getRefresh(webDriver);
+            commonUtil.refresh(webDriver);
             webDriver.sleep(2000);
         }
     }
 
     public boolean convertRecommend()throws Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
         webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_MORE_BTN).click();
         webDriver.elementByXPath(GaodunCluePageUI.RECOMMEND).click();
@@ -701,13 +701,13 @@ public class GaodunCluePage extends BasePages {
     public  void xsgl_52()  throws  Exception {
         //打开新增线索页面
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsAddClientUrl);
+        webDriver.get(Config.cmsAddClientUrl);
         webDriver.sleep(2000);
         Date date    = new Date();
         dStr  = String.valueOf(date.getTime());
         addClues(dStr,1);
         //回到线索列表页面
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
         webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_MORE_BTN).click();
         //选择预约试听
@@ -731,13 +731,13 @@ public class GaodunCluePage extends BasePages {
 
     public boolean xsgl_45()throws Exception {
         boolean flag = false;
-        webDriver.maximize().get(Config.cmsAddClientUrl);
+        webDriver.get(Config.cmsAddClientUrl);
         webDriver.sleep(2000);
         Date date    = new Date();
         dStr  = String.valueOf(date.getTime());
         addClues(dStr,1);
         //回到线索列表页面
-        webDriver.maximize().get(Config.cmsClueUrl);
+        webDriver.get(Config.cmsClueUrl);
         webDriver.sleep(5000);
         tel = commonUtil.getTel();
         webDriver.elementsByLinkText("跟进").get(0).click();//跟进
@@ -765,7 +765,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.get(Config.cmsCluesIndexUrl);
         Date date    = new Date();
         dStr  = String.valueOf(date.getTime());
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
 
         if(status == 0){
@@ -778,11 +778,14 @@ public class GaodunCluePage extends BasePages {
             tel  = commonUtil.getTel();
             repeatTel = tel;
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_NAME_INPUNT).click();
-            commonUtil.clear(webDriver);
+//            webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_NAME_INPUNT).clearText();
+            webDriver.execute("document.execCommand('selectAll')");
+
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_NAME_INPUNT).sendKeys(dStr);
 
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_TEL_INPUT).click();
-            commonUtil.clear(webDriver);
+//            webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_TEL_INPUT).clearText();
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_TEL_INPUT).sendKeys(tel);
 
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_INTERTEL_BTN).click();
@@ -797,11 +800,11 @@ public class GaodunCluePage extends BasePages {
             //修改联系人联系方式
             tel = commonUtil.getTel();
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_NAME_INPUNT).click();
-            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_NAME_INPUNT).sendKeys(dStr);
 
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_TEL_INPUT).click();
-            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_TEL_INPUT).sendKeys(tel);
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_QQ_INPUT).sendKeys(tel);
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_NAME_SAVE).click();
@@ -822,22 +825,23 @@ public class GaodunCluePage extends BasePages {
             webDriver.waitForElementByXPath("(.//*[normalize-space(text()) and normalize-space(.)='共享查询'])[1]/following::div[1]").click();
             //清空所有联系方式，以及删除联系人
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_TEL_INPUT).click();
-            commonUtil.clear(webDriver);
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_LINE_INPUT).click();
-            commonUtil.clear(webDriver);
-
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_MAIL_INPUT).click();
-            commonUtil.clear(webDriver);
-
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_QQ_INPUT).click();
-            commonUtil.clear(webDriver);
-
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_WECHAT_INPUT).click();
-            commonUtil.clear(webDriver);
-
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_INTERTEL_INPUT).click();
-            commonUtil.clear(webDriver);
-
+//            commonUtil.clear(webDriver);
+            webDriver.execute("document.execCommand('selectAll')");
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_TEL_SAVE).click();
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_INTERTEL_SAVE).click();
             webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_LINE_SAVE).click();
@@ -848,7 +852,7 @@ public class GaodunCluePage extends BasePages {
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_SURE_BTN).click();
         }
         webDriver.sleep(2000);
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(2000);
 
     }
@@ -1339,7 +1343,7 @@ public class GaodunCluePage extends BasePages {
     }
 
 
-    public String searchPlan(String sql) throws Exception{
+    public String searchPlan(String sql,String repeat) throws Exception{
         ResultSet su = testDao.query(sql);
         webDriver.sleep(2000);
         su.next();
@@ -1347,15 +1351,19 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(1000);
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCE).click();//点击关联
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCEINP).click();//点击然后输入项目
+        System.out.println(FullName+"+++==========================");
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCEINPUT).sendKeys(FullName);//输入项目
         char[] enter = {'\uE007'};
         char[] allow = {'\uE015'};
-        webDriver.sleep(1000);
+        webDriver.sleep(3000);
         webDriver.keys(new String(allow));
         webDriver.keys(new String(enter));
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCEBTN).click();//关联按钮
-        webDriver.sleep(2000);
-        webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
+        webDriver.sleep(1000);
+        webDriver.sleep(3000);
+        searchByPthone(repeat);
+        //webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).se/询
+     //   webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
         webDriver.sleep(2000);
         String project1 = webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCELIST).getText();
         webDriver.elementByLinkText("详情").click();//点击详情
@@ -1395,7 +1403,7 @@ public class GaodunCluePage extends BasePages {
         commonUtil.refresh(webDriver);;
         webDriver.sleep(2000);
         webDriver.elementById(GaodunCluePageUI.CLUE_CLUE).click();//点击线索管理
-        webDriver.sleep(500);
+        webDriver.sleep(1050);
 
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).sendKeys(repeat);//输入已存在的手机号
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
@@ -1425,7 +1433,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(7).sendKeys(repeatTel1+"@qq.com");// 私人邮箱
     }//5个联系方式
     public void addClueRequire(String project) throws  Exception{
-        webDriver.maximize().get(Config.cmsCommentUrl);
+        webDriver.get(Config.cmsCommentUrl);
         webDriver.sleep(1000);
         char[] enter = {'\uE007'};
         char[] allow = {'\uE015'};
@@ -1487,7 +1495,7 @@ public class GaodunCluePage extends BasePages {
     }//选择下两行
     public void followBase(String tel,String action)throws Exception{
         addClue_xsgl_3("确认",tel);
-        webDriver.maximize().get(Config.cmsCluesUrl);
+        webDriver.get(Config.cmsCluesUrl);
         searchByPthone(tel);
         webDriver.elementByLinkText("跟进").click();//跟进
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_FOLLOWBASE).click();//编辑基本信息
@@ -1509,7 +1517,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(1000);
     }//跟进>>修改基础信息
     public String followAddRelevance(String tel,String tel1)throws Exception {
-        webDriver.maximize().get(Config.cmsCluesUrl);
+        webDriver.get(Config.cmsCluesUrl);
         searchByPthone(tel);
         webDriver.elementByLinkText("跟进").click();//跟进
         webDriver.elementByCss(GaodunCluePageUI.CLUE_ADDRELEVANCE).click();//新增关联
@@ -1526,7 +1534,7 @@ public class GaodunCluePage extends BasePages {
         return values;
     }//跟进>>关联客户
     public void followInformation(String tel, String action,String time)throws Exception {
-        webDriver.maximize().get(Config.cmsCluesUrl);
+        webDriver.get(Config.cmsCluesUrl);
         webDriver.sleep(2000);
         commonUtil.refresh(webDriver);;
         webDriver.sleep(3000);
