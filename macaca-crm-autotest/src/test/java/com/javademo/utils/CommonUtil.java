@@ -2,6 +2,7 @@ package com.javademo.utils;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.javademo.dao.TestDao;
+import com.javademo.pages.Handler;
 import macaca.client.MacacaClient;
 import macaca.client.commands.Element;
 import macaca.client.common.DriverCommand;
@@ -145,16 +146,6 @@ public class CommonUtil {
         JSONArray valArray = (JSONArray) object.get("value");
         return valArray;
     }
-    public  void getRefresh(MacacaClient webDriver)throws Exception{
-        webDriver.sleep(2000);
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_R);
-//        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyRelease(KeyEvent.VK_R);
-        webDriver.sleep(2000);
-    }//刷新网页
     public  void  nextLine(MacacaClient webDriver) throws  Exception{
         webDriver.sleep(1000);
         char[] enter = {'\uE007'};
@@ -163,28 +154,27 @@ public class CommonUtil {
         webDriver.keys(new String(allow));
         webDriver.keys(new String(enter));
     }
+    public  void  nextOneLine(MacacaClient webDriver) throws  Exception{
+        webDriver.sleep(1000);
+        char[] enter = {'\uE007'};
+        char[] allow = {'\uE015'};
+        webDriver.keys(new String(allow));
+        webDriver.keys(new String(enter));
+    }
     public  void clear(MacacaClient webDriver)throws Exception{
         webDriver.sleep(500);
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_A);
-
-        robot.keyRelease(KeyEvent.VK_A);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_BACK_SPACE);
-        robot.keyRelease(KeyEvent.VK_BACK_SPACE);
+        webDriver.execute("document.execCommand('selectAll')");
+        char[] back = {'\ue003'};
+        webDriver.keys(new String(back));
         webDriver.sleep(2000);
     }//关闭页面
     //按下右边箭头，按下enter 键
     public  void  rightLine(MacacaClient webDriver) throws  Exception{
         webDriver.sleep(500);
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_RIGHT);
-        robot.keyRelease(KeyEvent.VK_RIGHT);
-        webDriver.sleep(500);
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
-        webDriver.sleep(2000);
+        char[] right = {'\ue014'};
+        char[] enter = {'\uE007'};
+        webDriver.keys(new String(right));
+        webDriver.keys(new String(enter));
     }
     public void refresh(MacacaClient webDriver) throws Exception {
         Utils utils = new Utils(webDriver.contexts);;
@@ -202,4 +192,14 @@ public class CommonUtil {
         jsonObject.put("sessionId", webDriver.contexts.getSessionId());
         utils.request("DELETE", WINDOW , jsonObject);
     }
+
+    public void switchToWindows(MacacaClient webDriver,int num)throws Exception{
+        Handler handler   = new Handler(webDriver.contexts);
+        JSONArray obj = (JSONArray) handler.takeHandler();
+        obj = (JSONArray) handler.takeHandler();
+        String      str1 =  (String) obj.get(num);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name",str1);
+        handler.switchWindow(jsonObject);
+    }//切换窗口
 }

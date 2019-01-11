@@ -122,5 +122,30 @@ public class GaodunOrderPageUI {
     public static final String  ORDER_RECOMMENDAUTHOR="(.//*[normalize-space(text()) and normalize-space(.)='推荐人'])[1]/following::input[1]";//推荐
     public static final String  ORDER_RECOMMENDSAVE="(.//*[normalize-space(text()) and normalize-space(.)='推荐人'])[1]/following::button[1]";//推荐
 
+    //订单分单
+    public static final String   ORDER_SPLIT_BTN        = "(.//*[normalize-space(text()) and normalize-space(.)='订单取消'])[3]/following::li[1]"; //点击分单
+    public static final String   ADD_SPLIT_BTN          = "(.//*[normalize-space(text()) and normalize-space(.)='%'])[1]/following::button[1]"; //分单加号点击
+    public static final String   SPLIT_PERSION          = "(.//*[normalize-space(text()) and normalize-space(.)='分单销售:'])[1]/following::span[4]";//点击分单销售框
+    public static final String   CHOOSE_SPLIT_GROUP     = "(.//*[normalize-space(text()) and normalize-space(.)='本人'])[2]/following::li[1]";//选择分组
+    public static final String   CHOOSE_SPLIT_PERSON    =  "(.//*[normalize-space(text()) and normalize-space(.)='自动化测试'])[2]/following::li[2]"; //选择person9
+    public static final String    SPLIT_RATIO            =    "(.//*[normalize-space(text()) and normalize-space(.)='分单比例:'])[2]/following::input[1]";//分单比例
+    // public static final String    SAVE_SPLIT_BTN         =    "(.//*[normalize-space(text()) and normalize-space(.)='-'])[2]/following::button[1]"; //保存分单
+    public static final String    SAVE_SPLIT_BTN         =  "(.//*[normalize-space(text()) and normalize-space(.)='取消'])[2]/preceding::span[1]";
+    public static final String    SPLIT_SURE_BTN         =   "(.//*[normalize-space(text()) and normalize-space(.)='取消'])[3]/following::span[1]";//确定分单按钮
+    public static final String    CHOOSE_SPLIT_MYSEFT     =  "(.//*[normalize-space(text()) and normalize-space(.)='自动化测试'])[2]/preceding::li[1]";//选择本人
+    public static final String    CANCEL_SPLIT_BTN      =  "(.//*[normalize-space(text()) and normalize-space(.)='保存'])[1]/following::span[1]";//取消按钮
+
+    //订单奖励
+    public static final String   ORDER_AWARD          =   "(.//*[normalize-space(text()) and normalize-space(.)='生成电子协议'])[3]/following::li[1]";// 订单奖励
+    public static final String   AWARD_SENDTIME       =   "(.//*[normalize-space(text()) and normalize-space(.)='奖品发放时间:'])[1]/following::input[1]"; //发放时间
+    public static final String   AWARD_STATUS         =  "(.//*[normalize-space(text()) and normalize-space(.)='奖品发放状态:'])[1]/following::input[1]";//发放状态
+    public static final String   AWARD_ALREADY_GRANT =  "(.//*[normalize-space(text()) and normalize-space(.)='未发放'])[1]/following::span[1]"; // 已发放
+    public static final String   AWARD_STYLE          =   "(.//*[normalize-space(text()) and normalize-space(.)='奖品类型:'])[1]/following::input[1]";//类型
+    public static final String   AWARD_STYLE_GOODS   =   "(.//*[normalize-space(text()) and normalize-space(.)='已发放'])[1]/following::span[2]"; //物品
+    public static final String   AWARD_INPUT          =  "(.//*[normalize-space(text()) and normalize-space(.)='奖励:'])[1]/following::input[1]"; //奖励
+    public static final String   AWARD_REMARKS        =   "(.//*[normalize-space(text()) and normalize-space(.)='备注:'])[1]/following::input[1]"; //备注
+    public static final String   AWARD_SAVE            = "(.//*[normalize-space(text()) and normalize-space(.)='清空'])[1]/preceding::span[1]";//确定
+    public static final String   AWARD_CLEAR            = "(.//*[normalize-space(text()) and normalize-space(.)='确定'])[1]/following::button[1]";//清空
+    public static final String   AWARD_CANCLE           = "(.//*[normalize-space(text()) and normalize-space(.)='确定'])[1]/following::button[2]";//取消
 
 }

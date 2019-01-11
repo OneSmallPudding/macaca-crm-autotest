@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1">
+    	<test name="test1" preserve-order="true">
+			<parameter name="elementTimeout" value="50000"></parameter>
+			<parameter name="elementTimeInterval" value="2000"></parameter>
+			<groups>
+				<run>
+					<include name="AllClue" />
+				</run>
+			</groups>
+			<classes >
+				<class name="com.javademo.cases.testClue"></class>
+			</classes>
+		</test>
+    <listeners>
+        <listener class-name="extentx.ExtentTestNGITestListener"></listener>
+		<listener class-name="com.javademo.utils.RetryListener" />
+		<listener class-name="com.javademo.utils.TestngListener" />
+    </listeners>
+</suite>

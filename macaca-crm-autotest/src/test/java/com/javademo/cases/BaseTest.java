@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.Iterator;
 
 import macaca.client.MacacaClient;
+import macaca.client.common.MacacaDriver;
 import macaca.java.biz.BaseErrorType;
 import macaca.java.biz.BaseMacacaClient;
 import macaca.java.biz.ResultGenerator;
@@ -29,52 +30,20 @@ public class BaseTest {
     // 屏幕截图的数目，为了实现递增的顺序
     //private int screenNum = 1;
     MacacaClient webDriver = new MacacaClient();
-
-
-
-
 /*
     @Parameters({ "elementTimeout", "elementTimeInterval" })
 */
-    @BeforeTest
+    @BeforeTest(groups = {"AllClue","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void setUp() throws Exception {
-
-/*
-        // 清除日志记录
-        ResultGenerator.clearOldData();
-        //清理截图重新记录
-        File file = new File(Config.SCREEN_SHOT_PATH);
-        deleteOldScreen(file);
-*/
-        JSONObject  prefs = new JSONObject();
-        // 设置提醒的设置，2表示block
-        prefs.put("profile.default_content_setting_values.notifications", 2);
-        JSONObject  prefs1 = new JSONObject();
-        prefs1.put("prefs",prefs);
-
-        JSONObject porps = new JSONObject();
-        porps.put("browserName", "chrome");
-        porps.put("platformName", "desktop");
-        porps.put("chromeOptions",prefs1);
-
-        JSONObject desiredCapabilities = new JSONObject();
-        desiredCapabilities.put("desiredCapabilities", porps);
-        webDriver.setWaitElementTimeout(50000);
-        webDriver.setWaitElementTimeInterval(1000);
-        webDriver.initDriver(desiredCapabilities).maximize().get(Config.cmsUrl);
-        webDriver.sleep(2000);
-        webDriver.elementsByClassName("el-input__inner").get(0).sendKeys(Config.cmsUserName);
-        webDriver.elementsByClassName("el-input__inner").get(1).sendKeys(Config.cmsUserPwd);
-        webDriver.elementByClassName("el-button").click();
-        webDriver.sleep(3000);
+        getDriver();
     }
-
-
-    @AfterTest
+    
+    @AfterTest(groups = {"AllClue","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void tearDown() throws Exception {
 
         try {
              webDriver.quit();
+             webDriver.execute("window.close()");
         } catch (Exception e) {
             // TODO: handle exception
             ResultGenerator.fail("quit fail", "", BaseErrorType.FUNCTION_FAILED);
@@ -148,5 +117,33 @@ public class BaseTest {
     }
 
 
+    public static ThreadLocal<MacacaClient> ThreadDriver=new ThreadLocal<MacacaClient>();
+
+    MacacaClient getDriver() throws  Exception{
+        MacacaClient driver=ThreadDriver.get();
+        if(driver==null){//如果当前线程没有绑定driver，则根据.xml配置文件创建driver并使用ThreadDriver.set()方法绑定到线程中。
+            JSONObject  prefs = new JSONObject();
+            // 设置提醒的设置，2表示block
+            prefs.put("profile.default_content_setting_values.notifications", 2);
+            JSONObject  prefs1 = new JSONObject();
+            prefs1.put("prefs",prefs);
+
+            JSONObject porps = new JSONObject();
+            porps.put("browserName", "chrome");
+            porps.put("platformName", "desktop");
+            porps.put("chromeOptions",prefs1);
+
+            JSONObject desiredCapabilities = new JSONObject();
+            desiredCapabilities.put("desiredCapabilities", porps);
+            webDriver.initDriver(desiredCapabilities).maximize().get(Config.cmsUrl);
+            webDriver.sleep(2000);
+            webDriver.elementsByClassName("el-input__inner").get(0).sendKeys(Config.cmsUserName);
+            webDriver.elementsByClassName("el-input__inner").get(1).sendKeys(Config.cmsUserPwd);
+            webDriver.elementByClassName("el-button").click();
+            webDriver.sleep(3000);
+            ThreadDriver.set(driver);
+        }
+        return driver;
+    }
 
 }

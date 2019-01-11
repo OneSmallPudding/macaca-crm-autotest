@@ -64,7 +64,7 @@ public class GaodunCluePageUI {
     public static final String  CLUE_CHANGEPROJECTBTN ="//div[2]/div[2]/div/div/button/span";//确认
     public static final String  CLUE_CHANGEPROJECTCON ="p.el-message__content";//提示
 
-    public static final String  SEARCH_HIGHSEARCH ="(.//*[normalize-space(text()) and normalize-space(.)='批量处理'])[1]/following::span[1]";//高级搜索
+    public static final String  SEARCH_HIGHSEARCH ="//*[@id=\"app\"]/div/section/div/div/div/div[1]/div[1]/div/div[2]/div/div[2]/button";//高级搜索
     public static final String  SEARCH_CREATETIME ="(.//*[normalize-space(text()) and normalize-space(.)='线索创建时间:'])[1]/following::input[1]";//时间
     public static final String  SEARCH_CREATETIMEONE ="(.//*[normalize-space(text()) and normalize-space(.)='当月'])[1]/following::button[1]";//时间
     public static final String  SEARCH_CREATEAUTHOR ="(.//*[normalize-space(text()) and normalize-space(.)='线索所属人:'])[1]/following::input[1]";
@@ -73,11 +73,13 @@ public class GaodunCluePageUI {
     public static final String  SEARCH_CREATEAFTERTIME1 ="(.//*[normalize-space(text()) and normalize-space(.)='昨天'])[1]/following::button[1]";
     public static final String  SEARCH_SEARCH ="(.//*[normalize-space(text()) and normalize-space(.)='清除条件'])[1]/preceding::button[1]";
     public static final String  SEARCH_CLEAR ="(.//*[normalize-space(text()) and normalize-space(.)='查询'])[1]/following::span[1]";
-    public static final String  SEARCH_PROJECT ="(.//*[normalize-space(text()) and normalize-space(.)='感兴趣的项目:'])[1]/following::input[2]";
+//    public static final String  SEARCH_PROJECT ="(.//*[normalize-space(text()) and normalize-space(.)='感兴趣的项目:'])[1]/following::input[2]";
+    public static final String  SEARCH_PROJECT ="//div[8]/div/div/div/div[2]/input";
+    public static final String  SEARCH_PROJECT1 ="//div[8]/div/div/div/div/input";
     public static final String  SEARCH_PROJECTBIMAWEI ="(.//*[normalize-space(text()) and normalize-space(.)='GIFT 微学院'])[1]/following::li[1]";
     public static final String  SEARCH_PROJECTAMIBA ="(.//*[normalize-space(text()) and normalize-space(.)='高校渠道-ACCA'])[1]/following::li[1]";
     public static final String  SEARCH_PROFESSIONAL ="(.//*[normalize-space(text()) and normalize-space(.)='职业状态:'])[1]/following::input[2]";
-    public static final String  SEARCH_PROFESSIONALSCHOOL ="(.//*[normalize-space(text()) and normalize-space(.)='在职'])[1]/following::span[1]";
+    public static final String  SEARCH_PROFESSIONALSCHOOL ="(.//*[normalize-space(text()) and normalize-space(.)='在职'])[2]/following::li[1]";
     public static final String  SEARCH_REMAN ="(.//*[normalize-space(text()) and normalize-space(.)='重复咨询人:'])[1]/following::input[1]";
     public static final String  SEARCH_REMANTEMA ="(.//*[normalize-space(text()) and normalize-space(.)='重复咨询人:'])[1]/following::span[6]";
     public static final String  SEARCH_RETIME ="(.//*[normalize-space(text()) and normalize-space(.)='重复咨询时间:'])[1]/following::input[1]";
@@ -157,12 +159,14 @@ public class GaodunCluePageUI {
     public static final String  CLUE_QQ_INPUT       =         "(.//*[normalize-space(text()) and normalize-space(.)='QQ：'])[1]/following::input[1]";
     public static final String  CLUE_WECHAT_INPUT   =        "(.//*[normalize-space(text()) and normalize-space(.)='微信：'])[1]/following::input[1]";
 //"(.//*[normalize-space(text()) and normalize-space(.)='姓名：'])[1]/following::button[1]"
-    public static final String  CONTECT_NAME_INPUNT =        "(.//*[normalize-space(text()) and normalize-space(.)='姓名：'])[1]/following::input[1]";
-    public static final String  CONTECT_TEL_INPUT   =        "(.//*[normalize-space(text()) and normalize-space(.)='手机：'])[2]/following::input[1]";
+
+
+
+    public static final String  CONTECT_NAME_INPUNT =        "//*[@id='pane-0']/div/div[1]/div/div/div/input";    public static final String  CONTECT_TEL_INPUT   =        "(.//*[normalize-space(text()) and normalize-space(.)='手机：'])[2]/following::input[1]";
     public static final String  CONTECT_QQ_INPUT    =         "(.//*[normalize-space(text()) and normalize-space(.)='QQ：'])[2]/following::input[1]";
-    public static final String  CONTECT_NAME_SAVE   =        "(.//*[normalize-space(text()) and normalize-space(.)='姓名：'])[1]/following::span[1]";
-    public static final String  CONTECT_TEL_SAVE    =        "(.//*[normalize-space(text()) and normalize-space(.)='手机：'])[1]/following::span[1]";
-    public static final String  CONTECT_QQ_SAVE     =     "(.//*[normalize-space(text()) and normalize-space(.)='QQ：'])[1]/following::span[1]";
+    public static final String  CONTECT_NAME_SAVE   =        "//*[@id='pane-0']/div/div[1]/div/div/button";
+    public static final String  CONTECT_TEL_SAVE    =        "//*[@id='pane-0']/div/div[2]/div/div/button";
+    public static final String  CONTECT_QQ_SAVE     =        "//*[@id='pane-0']/div/div[5]/div/div/button";
     public static final String  CLUE_NAME_SAVE      =        "(.//*[normalize-space(text()) and normalize-space(.)='姓名：'])[1]/following::span[1]";
     public static final String  CLUE_TEL_SAVE       =        "(.//*[normalize-space(text()) and normalize-space(.)='手机：'])[1]/following::span[1]";
     public static final String  CLUE_INTERTEL_SAVE    =        "(.//*[normalize-space(text()) and normalize-space(.)='国际号码：'])[1]/following::button[1]";
@@ -174,6 +178,7 @@ public class GaodunCluePageUI {
 //    public static final String  CLUE_RELEVANCENAME = "(.//*[normalize-space(text()) and normalize-space(.)='联系人姓名：'])[1]/following::input[1]";//关联客户姓名
 //    public static final String  CLUE_RELEVANCEPHONE = "(.//*[normalize-space(text()) and normalize-space(.)='手机：'])[2]/following::input[1]";//关联客户手机号
 //    public static final String  CLUE_RELEVANCEACC = "//div[8]/div/div/div/button";//确认
+
 
     public static final String  CONTECT_DEL_BTN   = "//div[@id='tab-0']/span";
     public static final String  CONTECT_SURE_BTN  = "//div[3]/button[2]/span";

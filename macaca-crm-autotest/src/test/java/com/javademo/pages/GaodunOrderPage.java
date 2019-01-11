@@ -47,10 +47,9 @@ public class GaodunOrderPage extends BasePages{
 //       webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_NAME).click();
 //        clear();
 
-        Element element = webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_NAME);
-        element.clearText();
-
-        webDriver.sleep(5000);
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_NAME).click();
+        commonUtil.clear(webDriver);
+        webDriver.sleep(1000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_NAME).sendKeys(normalOrderName);
         webDriver.sleep(1000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.EMERGE_CONTECT).sendKeys("ZHANGSAN");
@@ -209,9 +208,9 @@ public class GaodunOrderPage extends BasePages{
         getOrderByPhone(repeatName8,"未完成订单");//19901120003
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGE).click();//点击修改
         switchToWindows(1);
-        webDriver.sleep(6000);
-        webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGEPROJECT).clearText();//报名项目
-
+        webDriver.sleep(3000);
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGEPROJECT).click();//报名项目
+        webDriver.sleep(3000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGEPROJECT).sendKeys("阿米巴");
         nextLine();
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGESCHOOL).sendKeys("学校");//学校
@@ -238,7 +237,7 @@ public class GaodunOrderPage extends BasePages{
     }
     public boolean orderPay_21()throws Exception{
         boolean flag;
-//        repeatName8= "t10605675908";
+//        repeatName8="t10905605706";
         getOrderByPhone(repeatName8,"所有订单");
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath("(//a[contains(text(),'修改')])[3]").click();//点击修改
@@ -675,6 +674,7 @@ public class GaodunOrderPage extends BasePages{
         audit(repeatName8);
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_AUDIT).click();//审核
+        webDriver.sleep(1000);
         switchToWindows(1);
         webDriver.sleep(3000);
 
@@ -1080,4 +1080,163 @@ public class GaodunOrderPage extends BasePages{
     }//获取审核意见
 
 
+
+
+    //订单分单 status 为 0 是，打开后直接保存，status 为1 是打开后直接取消，status 为 3 点击+保存
+    //status 为4 是 点击+号后选择本人，status 为5 是点击+号后 选择本人，输入比例点击保存，status 为6 为大于100
+    //status为7 输入特殊字符 status 为 8 正常保存
+    public boolean  orderSplit(int status,int isFresh) throws Exception {
+        boolean flag = false;
+        if(isFresh == 0 ){
+            getOrderByName(normalOrderName,"所有订单",isFresh);
+        }
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_MORE).click();//更多
+        webDriver.sleep(2000);
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_SPLIT_BTN).click();
+        if(status != 0 &&  status != 1 ){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.ADD_SPLIT_BTN).click();
+            if(status == 4 || status == 5){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_PERSION).click();
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.CHOOSE_SPLIT_MYSEFT).click();
+            }
+            if(status == 6 || status == 7 || status == 8){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_PERSION).click();
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.CHOOSE_SPLIT_GROUP).click();
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.CHOOSE_SPLIT_PERSON).click();
+            }
+            if(status != 4 && status != 3){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_RATIO).click();
+                commonUtil.clear(webDriver);
+            }
+            if(status == 5 || status == 8){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_RATIO).sendKeys("20");
+            }else if(status == 6){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_RATIO).sendKeys("105");
+            }else if(status == 7){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_RATIO).sendKeys("#$$");
+            }
+        }
+        if(status == 1 ){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CANCEL_SPLIT_BTN).click();
+            webDriver.sleep(2000);
+            Element el =  webDriver.elementByXPath(GaodunOrderPageUI.ORDER_MORE);
+            if(el != null){
+                return  true;
+            }
+        }else {
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.SAVE_SPLIT_BTN).click();
+        }
+        if(status == 0 || status == 5 || status == 8){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.SPLIT_SURE_BTN).click();
+        }
+        webDriver.sleep(500);
+        String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
+        webDriver.sleep(1000);
+
+        if((status==0 || status == 8) && values.equals("分单已保存")){
+            flag = true;
+        }else if(status == 3 && values.equals("分单销售不能为空!")){
+            flag = true;
+        }else if(status == 4 && values.equals("分单比例必须大于0!")){
+            flag = true;
+        }else if(status == 5 && values.equals("分单销售不能重复.")){
+            flag = true;
+        }else if(status == 6 && values.equals("分单销售不能重复.")){
+            flag = true;
+        }else if(status == 7 && values.equals("比例数字必须为数字，可精确到两位小数，最大值为100%")){
+            flag = true;
+        }
+        return  flag;
+    }
+    // i 为 0 刷新页面，i为 1 不刷新页面
+    public void getOrderByName(String tel,String action,int i)throws Exception{
+        if(i == 0){
+            commonUtil.refresh(webDriver);
+            webDriver.get(Config.cmsOrderUrl);
+         /*   webDriver.sleep(2000);
+            webDriver.waitForElementById(GaodunOrderPageUI.CLUE_MYORDER).click();//我的订单*/
+            webDriver.sleep(1000);
+        }
+
+        if (action.equals("我的定金")){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERPAY).click();//我的定金
+        }else if (action.equals("未完成订单")){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERNOTACC).click();//未完成订单
+        }else if (action.equals("所有订单")){
+
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERALL).click();
+        }else if (action.equals("退回订单")){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERBACK).click();
+        }
+        webDriver.sleep(2000);
+        if (action.equals("所有订单")){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERALLSEARCH).sendKeys(tel);
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_ALLORDERSEARCHBYNAME).click();
+            // webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERALLSEARCHPHONE).click();//点击联系方式
+            webDriver.sleep(2000);
+            //webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERFRIST).click();//选择第一个
+        }else {
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERPAYSERACH).click();//搜索框
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERPAYSERACH).clearText();//搜索框
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERPAYSERACH).sendKeys(tel);//搜索框
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERSEARCHBYNAME).click();
+//            webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERGET).click();//点击联系方式
+            webDriver.sleep(2000);
+            //webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERFRIST).click();//选择第一个
+        }
+    }//通过手机号查询勾选中第一个
+    //订单奖励  status 为0 直接点击保存，status 为1 直接关闭，status 为2 物品奖励 正常保存
+    //status 为3 物品奖励，重复保存，status 为4 现金奖励，奖励内容输入汉字
+    //status 为5 现金奖励，奖励内容输入数字保持成功，status 为6 点击清空
+    public  boolean  orderAward(int status) throws Exception{
+        boolean flag = false;
+        getOrderByName(normalOrderName,"所有订单",0);
+        webDriver.sleep(2000);
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_MORE).click();//更多
+        webDriver.sleep(2000);
+        webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_AWARD).click();
+        if(status != 0 && status !=1){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_SENDTIME).click();
+            commonUtil.rightLine(webDriver);
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_STATUS).click();
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_ALREADY_GRANT).click();
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_STYLE).click();
+            if (status == 4 || status == 5){
+                commonUtil.nextLine(webDriver);
+            }else {
+                commonUtil.nextOneLine(webDriver);
+            }
+            if(status == 4){
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_INPUT).sendKeys("汉字");
+            }else{
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_INPUT).sendKeys("324234");
+            }
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_REMARKS).sendKeys("备注");
+        }
+
+        if(status !=1  &&  status  != 6){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_SAVE).click();
+            webDriver.sleep(500);
+            String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
+            webDriver.sleep(1000);
+
+            if((status==2 || status == 5) && values.equals("添加订单奖励成功")){
+                flag = true;
+            }else if(status == 3 && values.equals("添加奖励信息异常:同类型奖励不能重复添加！")){
+                flag = true;
+            }else if(status == 4 && values.equals("添加奖励信息异常:奖励现金类型请填写数字")){
+                flag = true;
+            }else if(status == 0  && values.equals("请填写完奖励信息")){
+                flag = true;
+            }
+
+        }else if(status == 1){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_CANCLE).click();
+            flag = true;
+        }else if(status == 6){
+            webDriver.waitForElementByXPath(GaodunOrderPageUI.AWARD_CLEAR).click();
+            flag = true;
+        }
+        return  flag;
+    }
 }

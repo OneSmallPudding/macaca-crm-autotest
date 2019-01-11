@@ -1,35 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Suite1">
-
-    <!-- <test name="testDiscover"  preserve-order="true">
-        <parameter name="elementTimeout" value="50000"></parameter>
-        <parameter name="elementTimeInterval" value="2000"></parameter>
-        <classes>
-            <class name="com.javademo.cases.testOrder"></class>
-        </classes>
-    </test>
-    <test name="testCourse"  preserve-order="true">
-        <parameter name="elementTimeout" value="30000"></parameter>
-        <parameter name="elementTimeInterval" value="2000"></parameter>
-        <classes>
-            <class name="com.javademo.cases.testOrder2"></class>
-        </classes>
-    </test> -->
-    <test name="testPersonal"  preserve-order="true">
-        <parameter name="elementTimeout" value="30000"></parameter>
-        <parameter name="elementTimeInterval" value="2000"></parameter>
-        <classes>
-            <class name="com.javademo.cases.testClueSearch"></class>
-        </classes>
-    </test>
-    <!-- <test name="testHome"  preserve-order="true">
-        <parameter name="elementTimeout" value="20000"></parameter>
-        <parameter name="elementTimeInterval" value="2000"></parameter>
-        <classes>
-            <class name="com.javademo.cases.testClue"></class>
-        </classes>
-    </test> -->
-    <listeners>
-        <listener class-name="extentx.ExtentTestNGITestListener"></listener>
-    </listeners>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite1"  parallel="classes" thread-count="4" >
+    	<test name="test1" preserve-order="true">
+			<parameter name="elementTimeout" value="50000"></parameter>
+			<parameter name="elementTimeInterval" value="2000"></parameter>
+			<groups>
+				<run>
+					<include name="AllClue" />
+					<include name="AllOrder4" />
+					<include name="AllOrder2" />
+				</run>
+			</groups>
+			<classes >
+				<class name="com.javademo.cases.testClue"></class>
+				<class name="com.javademo.cases.testOrder" ></class>
+			</classes>
+		</test>
+    <!--<listeners>-->
+        <!--<listener class-name="extentx.ExtentTestNGITestListener"></listener>-->
+		<!--&lt;!&ndash;<listener class-name="com.javademo.utils.RetryListener" />&ndash;&gt;-->
+		<!--&lt;!&ndash;<listener class-name="com.javademo.utils.TestngListener" />&ndash;&gt;-->
+    <!--</listeners>-->
 </suite>

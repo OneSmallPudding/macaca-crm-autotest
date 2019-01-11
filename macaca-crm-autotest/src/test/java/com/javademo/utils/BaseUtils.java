@@ -1,19 +1,6 @@
 package com.javademo.utils;
-
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSONObject;
 import com.javademo.cases.BaseTest;
-
-import macaca.java.biz.CommonUIBean;
-
-public class BaseUtils extends BaseTest{
+public class BaseUtils extends BaseTest {
  /*   public static CommonUIBean getBeanByIndex(CommonUIBean cub, int index){
         CommonUIBean cub_new = cub;
         Map<String, Object>  m_cub = transBean2Map(cub);

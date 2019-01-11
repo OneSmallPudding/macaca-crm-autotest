@@ -10,21 +10,27 @@ public class Config {
 
 
     public static final String databaseUrl         = ""; //test
-    //   //pre
-//    public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:13307";
-//    public static final String  DATABASE_NAME      = "gaodun_beta";
-//    public static final String  DATABASE_PWD       = "gasb43Fcsg";
-//    public static final String  cmsUrl             = "https://pre-baiyi.gaodun.com/#/login" ; //test
-//    public static final String  cmsCommentUrl      = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ; //test
-//    public static final String  cmsCluesUrl      = "https://pre-baiyi.gaodun.com/#/Index" ; //test
-//    public static final String  cmsOrderUrl        = "https://pre-baiyi.gaodun.com/#/order" ;//test
-//    public static final String  cmsCluesIndexUrl      = "https://pre-baiyi.gaodun.com/#/cluesIndex" ; //test
-//    public static final String  cmsUserTel         = "12300475413";//test
-//        public static final String  cmsUserInternationalTel  = "00119403548675";
-    //public static final String  Table      = "Tpo_Sys_Users" ; //test
-    //public static final String  Table1      = "Tpo_Sys_Department_User" ; //test
-    //public static final String  Table2      = "Tpo_Sys_Departments" ; //test
+    /*   //pre
+    public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:13307";
+    public static final String  DATABASE_NAME      = "gaodun_beta";
+    public static final String  DATABASE_PWD       = "gasb43Fcsg";
+    public static final String   batchAllotMany     = "SELECT TSU.TrueName 'TrueName' FROM crm.CustomInfo CI JOIN crm.Clue_Status CS ON CI.Guid = CS.CustomGuid JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE CI.TrueName in (";
+    public static final String   batchAllotSingle   = "SELECT TSU.TrueName 'TrueName' FROM crm.CustomInfo CI JOIN crm.Clue_Status CS ON CI.Guid = CS.CustomGuid JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE CI.TrueName =";
 
+    public static final String  cmsUrl             = "https://pre-baiyi.gaodun.com/#/login" ; //test
+    public static final String  cmsCommentUrl      = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ; //test
+    public static final String  cmsCluesUrl      = "https://pre-baiyi.gaodun.com/#/Index" ; //test
+    public static final String  cmsOrderUrl        = "https://pre-baiyi.gaodun.com/#/order" ;//test
+    public static final String  cmsCluesIndexUrl      = "https://pre-baiyi.gaodun.com/#/cluesIndex" ; //test
+    public static final String  cmsUserTel         = "12300475413";//test
+        public static final String  cmsUserInternationalTel  = "00119403548675";
+    public static final String  Table      = "Tpo_Sys_Users" ; //test
+    public static final String  Table1      = "Tpo_Sys_Department_User" ; //test
+    public static final String  Table2      = "Tpo_Sys_Departments" ; //test
+    public static final String  repeatTel13         = "10505973503";//  crm项目别人名下的手机号
+    public static final String  cmsClueUrl         = "https://pre-baiyi.gaodun.com/#/cluesIndex";
+    public static final String  cmsAddClientUrl    = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ;
+*/
    /* //test
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:3306";
     public static final String  DATABASE_NAME      = "gaodun_test";
@@ -56,14 +62,14 @@ public class Config {
     public static final String  cmsUserPwd         = "123456q";
 
   //   //RPOD
-    public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:7908";
+    public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:9988";
     public static final String  DATABASE_NAME      = "dev";
     public static final String  DATABASE_PWD       = "ji35LEWiR5";
     public static final String   batchAllotMany     = "SELECT TSU.TrueName 'TrueName' FROM crm.CustomInfo CI JOIN crm.Clue_Status CS ON CI.Guid = CS.CustomGuid JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE CI.TrueName in (";
     public static final String   batchAllotSingle   = "SELECT TSU.TrueName 'TrueName' FROM crm.CustomInfo CI JOIN crm.Clue_Status CS ON CI.Guid = CS.CustomGuid JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE CI.TrueName =";
 
     public static final String  cmsUserTel         = "12500191824";//prod
-    public static final String  repeatTel13         = "13500191824";//prod
+    public static final String  repeatTel13         = "10002652992";//prod
     public static final String  cmsUserInternationalTel  = "00119101357621";//prod
     public static final String  cmsOrderUrl        = "https://baiyi.gaodun.com/#/order" ;//prod
     public static final String  cmsCommentUrl      = "https://baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ; //prod

@@ -9,11 +9,12 @@
 
     <name>autoui</name>
     <url>http://maven.apache.org</url>
-    <properties>
-        <property>
-            <xml.file>${env.xmlFileName}</xml.file>
-        </property>
-    </properties>
+
+    <!--<properties>-->
+        <!--<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
+        <!--<xml.file>${xmlFileName}</xml.file>-->
+    <!--</properties>-->
+
     <build>
         <plugins>
 
@@ -53,8 +54,8 @@
                 <version>2.20.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${xml.file}</suiteXmlFile>
-                        <!--<suiteXmlFile>testng.xml</suiteXmlFile>-->
+                        <!--<suiteXmlFile>${xml.file}</suiteXmlFile>-->
+                        <suiteXmlFile>testngorder5.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

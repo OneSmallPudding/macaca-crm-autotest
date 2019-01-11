@@ -6,19 +6,13 @@ import com.javademo.dao.TestDao;
 import com.javademo.pageuis.GaodunCluePageUI;
 import com.javademo.utils.CommonUtil;
 import com.javademo.utils.Config;
-import com.sun.jmx.snmp.InetAddressAcl;
-import com.sun.nio.sctp.PeerAddressChangeNotification;
+
 
 import macaca.client.commands.Element;
-import macaca.client.commands.Url;
-import macaca.client.common.MacacaDriver;
-import org.bytedeco.javacpp.presets.opencv_core;
-import org.openqa.selenium.interactions.Actions;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.sql.Array;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GaodunCluePage extends BasePages {
@@ -50,45 +44,15 @@ public class GaodunCluePage extends BasePages {
         addTest(repeatTel2,"毕马威","确认");
         addTest(repeatTelACCA,"阿米巴","确认");
     }
-    public  boolean addClue()  throws  Exception {
-        boolean flag = false;
-        webDriver.maximize().get(Config.cmsCommentUrl);
-        webDriver.sleep(1000);
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(0).sendKeys("汪蕾");// 姓名
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_LAB).get(2).click();// 性别
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(1).click();// 感兴趣项目
-        nextLine();
-        webDriver.elementByXPath(GaodunCluePageUI.CLUE_PHONE).sendKeys(commonUtil.getTel());// 手机号
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(3).click();// 国际电话
-       nextLine();
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(4).sendKeys(commonUtil.getTel());// 国际电话
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(5).sendKeys(commonUtil.getTel());// QQ
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(6).sendKeys(commonUtil.getTel());// 微信
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(7).sendKeys(commonUtil.getTel()+"@qq.com");// 私人邮箱
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(8).click();// 职业状态
-        nextLine();
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(9).click();// 省市
-        nextLine();
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_INPUT).get(10).click();// 省市
-        nextLine();
-        webDriver.elementByClassName(GaodunCluePageUI.CLUE_SOURCE).click();// 客户来源
-        nextLine();
-        webDriver.elementByClassName(GaodunCluePageUI.CLUE_NOTES).sendKeys("1881234123418812341234");// 备注
-        webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(0).click();// 确认自动分配
-        // webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(1).click();// 保存不自动分配
-        webDriver.sleep(2000);
-        JSONObject object =   webDriver.execute("var x = document.getElementsByClassName('el-input__inner');return x[0].value;");
-        String name  = (String) object.get("value");
-        System.out.println("============================"+name);
-        if(name.equals("") || name == null){
-            flag = true;
-        }
-        return flag;
-    };
+    public void addTest1() throws Exception{
+        repeatTel1 = commonUtil.getTel();//测试数据1 -单一项目
+        System.out.print(repeatTel1+"repeatTel1===================");
+        addTest(repeatTel1,"毕马威","确认");
+    }
     public  boolean addClue_xsgl_1(String action)  throws  Exception {
         boolean flag = true;
         webDriver.maximize().get(Config.cmsCommentUrl);
-        webDriver.sleep(1000);
+        webDriver.sleep(4000);
         String repeatTel=commonUtil.getTel();
         addClueCommunication(repeatTel);
         addClueAction(action);
@@ -118,11 +82,12 @@ public class GaodunCluePage extends BasePages {
     public  boolean addClue_xsgl_3(String action,String tel)  throws  Exception {
         boolean flag = false;
         webDriver.maximize().get(Config.cmsCommentUrl);
-        webDriver.sleep(1000);
+        webDriver.sleep(4000);
         addClueRequire("毕马威");
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_PHONE).sendKeys(tel);// 手机号
-        addClueAction(action);
         webDriver.sleep(2000);
+        addClueAction(action);
+        webDriver.sleep(5000);
         String name  = getNameByJs();
         System.out.print("====================================================="+name);
         if(name.equals("") || name == null){
@@ -138,7 +103,7 @@ public class GaodunCluePage extends BasePages {
         addClueRequire("毕马威");
         addClueCommunication(tel);
         addClueAction(action);
-        webDriver.sleep(2000);
+        webDriver.sleep(4000);
         String phone  = getPthonByJs();
         System.out.print("====================================================="+tel);
         int count = getRestart(tel);
@@ -157,7 +122,7 @@ public class GaodunCluePage extends BasePages {
         addClueRequire("阿米巴");
         addClueCommunication(tel);
         addClueAction(action);
-        webDriver.sleep(2000);
+        webDriver.sleep(4000);
         String phone  = getPthonByJs();
         System.out.print(phone+"===============================");
         if(phone.equals("") || phone == null){
@@ -172,13 +137,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.elementById(GaodunCluePageUI.CLUE_CLUE).click();//点击线索管理
         webDriver.sleep(2000);
         webDriver.elementByClassName(GaodunCluePageUI.CLUE_ADD).click();//新增客户
-        Handler handler   = new Handler(webDriver.contexts);
-        JSONArray obj = (JSONArray) handler.takeHandler();
-        obj = (JSONArray) handler.takeHandler();
-        String      str1 =  (String) obj.get(1);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name",str1);
-        handler.switchWindow(jsonObject);
+       commonUtil.switchToWindows(webDriver,1);
         try {
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(2).click();// 关闭
             flag = true;
@@ -189,14 +148,7 @@ public class GaodunCluePage extends BasePages {
     public boolean queryOwner_xsgl_12() throws  Exception{
         boolean flag ;
         //切回window
-        Handler handler   = new Handler(webDriver.contexts);
-        JSONArray obj = (JSONArray) handler.takeHandler();
-        obj = (JSONArray) handler.takeHandler();
-        String      str1 =  (String) obj.get(0);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name",str1);
-        handler.switchWindow(jsonObject);
-
+        commonUtil.switchToWindows(webDriver,0);
         searchPthone(repeatTel1);
         webDriver.sleep(1000);
         try {
@@ -205,7 +157,6 @@ public class GaodunCluePage extends BasePages {
         }catch (Exception e){
             flag = false;
         }
-        commonUtil.refresh(webDriver);;
         return flag;
     };// 根据是否可以勾选
     public boolean queryOwner_xsgl_13() throws  Exception{
@@ -262,8 +213,10 @@ public class GaodunCluePage extends BasePages {
         webDriver.acceptAlert().elementByXPath(GaodunCluePageUI.CLUE_CHAT).sendKeys("沟通");//踢回公池
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SETBACK).click();//踢回公池
         webDriver.sleep(3000);
+        commonUtil.refresh(webDriver);
+        webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).sendKeys(repeatTel2);//输入已存在的手机号
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
-        webDriver.sleep(1000);
+        webDriver.sleep(3000);
         String user = webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BELONGERS).get(1).getText();
         System.out.print(user+"===============================");
 
@@ -286,7 +239,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(2000);
         String user = webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BELONGERS).get(1).getText();
         System.out.println("====="+user+"=====");
-        if(user.equals("管理员")){
+        if(user.equals("autotest5")){
                 flag = true;
             };
         commonUtil.refresh(webDriver);;
@@ -323,7 +276,7 @@ public class GaodunCluePage extends BasePages {
        searchByPthone(repeatTel2);
         //      searchByPthone("10508832589");
         //  searchByPthone("18812341234");
-        String SQL = "SELECT Tpo_Base_SourceDetails.FullName FROM crm_base.Tpo_Base_SourceDetails WHERE CreateTime<DATE_FORMAT( date_add( curdate( ), INTERVAL - 3 MONTH ), '%Y-%m-%d 23:59:59' ) ORDER BY CreateTime DESC;";
+        String SQL = "SELECT Tpo_Base_SourceDetails.FullName FROM crm_base.Tpo_Base_SourceDetails WHERE CreateTime<DATE_FORMAT( date_add( curdate( ), INTERVAL - 3 MONTH ), '%Y-%m-%d 00:00:00' ) ORDER BY CreateTime DESC;";
         String  project =searchPlan(SQL);
         String[] projectList=project.split("=");
         String  project1=projectList[0];
@@ -342,9 +295,12 @@ public class GaodunCluePage extends BasePages {
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_ALERTXM).click();//勾选小马学长标签
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_ALERTADD).click();//添加按钮
         webDriver.sleep(1000);
+        commonUtil.refresh(webDriver);
+        webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).sendKeys(repeatTel1);//输入已存在的手机号
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
         webDriver.sleep(1000);
         String labels = webDriver.elementByXPath(GaodunCluePageUI.CLUE_LISTLABEL).getText();//获取列表页里面关联标签内容
+        System.out.print("========"+labels+"========");
         if (!labels.equals("")){
             flag=true;
         }
@@ -358,14 +314,13 @@ public class GaodunCluePage extends BasePages {
         boolean flag = changeProject(repeatTelACCA,"毕马威","转项目完成，1条成功，0条未成功。");
         return flag;
     }
-    //TODO:26 通过函数执行了
     public boolean follow_xsgl_42(String action)throws Exception{
         boolean flag = false;
         String tel = commonUtil.getTel();
         followBase(tel,action);
         System.out.print(tel+"====================================================");
         webDriver.sleep(3000);
-        webDriver.elementByCss(GaodunCluePageUI.CLUE_CITYPHONE).click();//点击列表页的国际电话
+        webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_CITYPHONE).click();//点击列表页的国际电话
         webDriver.sleep(3000);
         String num = webDriver.elementByXPath(GaodunCluePageUI.CLUE_GETCITYPHONE).getText();//获取列表页的国际电话
         if (num.endsWith(tel)){
@@ -450,8 +405,11 @@ public class GaodunCluePage extends BasePages {
     public boolean follow_xsgl_50()throws Exception{
         boolean flag;
        followInformation(repeatTel2,"失效客户","沟通时间当前或之后");
-        // followInformation("18812341111","失效客户","沟通时间当前或之后");
+        //  followInformation("10408524514","失效客户","沟通时间当前或之后");
         webDriver.sleep(3000);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+        webDriver.saveScreenshot("D:\\crmcut\\"+date+"50.png");
         try {
             webDriver.elementByLinkText(">>").click();//点击》》
             flag =false;
@@ -468,26 +426,24 @@ public class GaodunCluePage extends BasePages {
         webDriver.elementByLinkText("跟进").click();//跟进
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_FOLLOWAPPLY).click();//报名
         webDriver.sleep(3000);
-        Handler handler   = new Handler(webDriver.contexts);
-        JSONArray obj = (JSONArray) handler.takeHandler();
-        obj = (JSONArray) handler.takeHandler();
-        String      str1 =  (String) obj.get(3);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name",str1);
-        handler.switchWindow(jsonObject);
+        commonUtil.switchToWindows(webDriver,1);
         String title = webDriver.title();
+        System.out.println("================"+title);
         if (title.contains("创建订单")){
             flag =true;
             System.out.print(title);
         }else {
             flag=false;
         };
+        commonUtil.close(webDriver);
+        commonUtil.switchToWindows(webDriver,0);
         return flag;
     }
 
     public  boolean search_merge_clue(int i)  throws  Exception {
         boolean flag = false;
         webDriver.maximize().get(Config.cmsClueUrl);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BOX).get(0).click();
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BOX).get(1).click();
@@ -507,13 +463,14 @@ public class GaodunCluePage extends BasePages {
         if(name.equals("没有相关数据")){
             flag = true;
         }
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         return flag;
     };
 
     // 选择 1 条 或 3条线索合并。
     public  boolean addClue_merge(int i)  throws  Exception {
         webDriver.maximize().get(Config.cmsClueUrl);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
         boolean flag = false;
         for(int j = 0;j<i;j++){
@@ -524,7 +481,7 @@ public class GaodunCluePage extends BasePages {
         if(el != null){
             flag = true;
         }
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         return flag;
     }
 
@@ -623,14 +580,12 @@ public class GaodunCluePage extends BasePages {
     public boolean  book() throws  Exception{
         boolean flag = false;
         tel = commonUtil.getTel();
-        webDriver.sleep(2000);
-        webDriver.maximize().get(Config.cmsClueUrl);
-        webDriver.sleep(3000);
+        commonUtil.refresh(webDriver);
+        webDriver.sleep(5000);
         webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_MORE_BTN).click();
         webDriver.sleep(3000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.BOOK_BTN).click();
         webDriver.waitForElementByXPath(GaodunCluePageUI.BOOK_START).click();
-        commonUtil.rightLine(webDriver);
         commonUtil.rightLine(webDriver);
         webDriver.sleep(3000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.BOOK_END).click();
@@ -676,14 +631,17 @@ public class GaodunCluePage extends BasePages {
             webDriver.elementByClassName(GaodunCluePageUI.CLUE_NOTES).sendKeys("1881234123418812341234");// 备注
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(1).click();// 保存
             webDriver.sleep(2000);
-            commonUtil.getRefresh(webDriver);
+            commonUtil.refresh(webDriver);
             webDriver.sleep(2000);
         }
     }
 
     public boolean convertRecommend()throws Exception {
         boolean flag = false;
+
         webDriver.maximize().get(Config.cmsClueUrl);
+
+        commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
         webDriver.waitForElementByCss(GaodunCluePageUI.CLUE_MORE_BTN).click();
         webDriver.elementByXPath(GaodunCluePageUI.RECOMMEND).click();
@@ -762,10 +720,9 @@ public class GaodunCluePage extends BasePages {
 
     //测试更多下的修改联系方式。status 为 0 ，修改联系人信息以及修改关联联系人， status 为 1  删除所有联系方式,以及删除关联联系人
     public  void xsgl_54(int status)  throws  Exception {
-        webDriver.get(Config.cmsCluesIndexUrl);
+        commonUtil.refresh(webDriver);
         Date date    = new Date();
         dStr  = String.valueOf(date.getTime());
-        commonUtil.getRefresh(webDriver);
         webDriver.sleep(5000);
 
         if(status == 0){
@@ -848,7 +805,7 @@ public class GaodunCluePage extends BasePages {
             webDriver.waitForElementByXPath(GaodunCluePageUI.CONTECT_SURE_BTN).click();
         }
         webDriver.sleep(2000);
-        commonUtil.getRefresh(webDriver);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(2000);
 
     }
@@ -907,21 +864,19 @@ public class GaodunCluePage extends BasePages {
                 "ORDER BY\n" +
                 "\tCI.Create_Time DESC;";
         String sql3 ="SELECT\n" +
-                "CI.ClueNo\n" +
+                "\tCI.ClueNo \n" +
                 "FROM\n" +
-                "crm.ClueInfo CI\n" +
-                "JOIN crm.Clue_Status CS ON CS.ClueNo = CI.ClueNo\n" +
-                "JOIN gd_permission." +Config.Table1+" TSDU ON TSDU.UserId = CS.ClueOwner\n" +
-                "JOIN gd_permission." +Config.Table2+" TSD ON TSD.DeparentId = TSDU.DeparentId\n" +
-                "JOIN crm.ClueDescribe CD ON CD.ClueNo = CS.ClueNo\n" +
+                "\tcrm.ClueInfo CI\n" +
+                "\tJOIN crm.Clue_Status CS ON CS.ClueNo = CI.ClueNo\n" +
+                "\tJOIN gd_permission.tpo_sys_department_user TSDU ON TSDU.UserId = CS.ClueOwner\n" +
+                "\tJOIN gd_permission.tpo_sys_departments TSD ON TSD.DeparentId = TSDU.DeparentId\n" +
+                "\tJOIN crm.ClueDescribe CD ON CD.ClueNo = CS.ClueNo \n" +
                 "WHERE\n" +
-                "DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= CI.Create_Time\n" +
-                "AND TSD.`Name` = '自动化测试专用'\n" +
-                "AND date_format(\n" +
-                "CD.NextCommunicateTime,\n" +
-                "\t'%Y-%m'\n" +
-                ") = date_format(now(), '%Y-%m')\n" +
-                "AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) <= CS.Update_Time\n" +
+                "\tDATE_SUB( CURDATE( ), INTERVAL 1 MONTH ) <= CI.Create_Time \n" +
+                "\tAND TSD.`Name` = '自动化测试专用' \n" +
+                "\tAND CD.NextCommunicateTime BETWEEN DATE_ADD( CURDATE( ), INTERVAL - DAY ( curdate( ) ) + 1 DAY ) \n" +
+                "\tAND CURDATE( ) \n" +
+                "\tAND DATE_SUB( CURDATE( ), INTERVAL 1 MONTH ) <= CS.Update_Time \n" +
                 "ORDER BY\n" +
                 "\tCI.Create_Time DESC;" ;
         boolean flag;
@@ -971,6 +926,7 @@ public class GaodunCluePage extends BasePages {
         JSONArray sqlArray = commonUtil.getDataBySql(sql,20,"ClueNo");
         System.out.print(array+"===============================");
         System.out.print(sqlArray+"===============================");
+        System.out.print(sql+"===============================");
         flag =  array.equals(sqlArray);
         return  flag;
     }
@@ -1008,14 +964,16 @@ public class GaodunCluePage extends BasePages {
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_CREATEAFTERTIME1).click();
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("毕马威");//项目
         nextOneLine();
-        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("阿米巴");//项目
+        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT1).sendKeys("阿米巴");//项目
         nextOneLine();
+        Robot robot = new Robot();
+        robot.mouseWheel(2);
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROFESSIONAL).click();//职业
+        webDriver.sleep(1000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROFESSIONALSCHOOL).click();//在校
         //下移窗口
         webDriver.sleep(2000);
-        Robot robot = new Robot();
-        robot.mouseWheel(10);
+        robot.mouseWheel(3);
         String sql = "";
         webDriver.sleep(2000);
         if (action.equals("查询")){
@@ -1025,6 +983,8 @@ public class GaodunCluePage extends BasePages {
             webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_CLEAR).click();//清除
             webDriver.sleep(2000);
         }
+        robot.mouseWheel(5);
+        webDriver.sleep(3000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_SEARCH).click();//查询
         JSONArray array = commonUtil.getElementByClassName("clue-id-text",webDriver);
         JSONArray sqlArray = commonUtil.getDataBySql(sql,20,"ClueNo");
@@ -1048,12 +1008,15 @@ public class GaodunCluePage extends BasePages {
         webDriver.elementsByClassName(GaodunCluePageUI.SEARCH_RETIME1).get(1).click();//昨天
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("毕马威");//项目
         nextOneLine();
-        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("阿米巴");//项目
+//        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).click();//项目
+        webDriver.sleep(3000);
+        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT1).sendKeys("阿米巴");//项目
+//        webDriver.sleep(3000);
         nextOneLine();
         //下移窗口
-        webDriver.sleep(2000);
+        webDriver.sleep(4000);
         Robot robot = new Robot();
-        robot.mouseWheel(10);
+        robot.mouseWheel(5);
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_SEARCH).click();//查询
         String sql ="SELECT\n" +
@@ -1184,7 +1147,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(4000);
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("毕马威");//项目
         nextOneLine();
-        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT).sendKeys("阿米巴");//项目
+        webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_PROJECT1).sendKeys("阿米巴");//项目
         nextOneLine();
         webDriver.waitForElementByXPath(GaodunCluePageUI.SEARCH_YESORNOTEL).click();//是否有号码
         webDriver.sleep(2000);
@@ -1360,18 +1323,8 @@ public class GaodunCluePage extends BasePages {
         String project1 = webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCELIST).getText();
         webDriver.elementByLinkText("详情").click();//点击详情
         webDriver.sleep(2000);
-        Handler handler   = new Handler(webDriver.contexts);
-        JSONArray obj = (JSONArray) handler.takeHandler();
-        obj = (JSONArray) handler.takeHandler();
-        String  str1;
-        if (sql.equals("SELECT Tpo_Base_SourceDetails.FullName FROM crm_base.Tpo_Base_SourceDetails WHERE CreateTime>DATE_FORMAT( date_add( curdate( ), INTERVAL - 3 MONTH ), '%Y-%m-%d 23:59:59' ) ORDER BY CreateTime DESC;")){
-            str1 =  (String) obj.get(1);
-        } else {
-            str1 =  (String) obj.get(2);
-        }
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name",str1);
-        handler.switchWindow(jsonObject);
+        commonUtil.switchToWindows(webDriver,1);
+        commonUtil.refresh(webDriver);
         webDriver.sleep(4000);
         String project2 = webDriver.elementByXPath(GaodunCluePageUI.CLUE_RELEVANCEDETAILS).getText();
         System.out.print(project2+"========================");
@@ -1379,6 +1332,8 @@ public class GaodunCluePage extends BasePages {
         if (project2.equals("")){
             project2 = "不可以显示";
         }
+        commonUtil.close(webDriver);
+        commonUtil.switchToWindows(webDriver,0);
         return project1+"="+project2;
     }//返回project1是列表页获取的营销计划project2是详情页的显示
     public void getBackByPthone(String tel) throws  Exception{
@@ -1396,7 +1351,6 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(2000);
         webDriver.elementById(GaodunCluePageUI.CLUE_CLUE).click();//点击线索管理
         webDriver.sleep(500);
-
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).sendKeys(repeat);//输入已存在的手机号
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
         webDriver.sleep(3000);
@@ -1404,15 +1358,12 @@ public class GaodunCluePage extends BasePages {
     public void searchByPthone(String repeat) throws  Exception{
         webDriver.get(Config.cmsCluesUrl);
         webDriver.sleep(2000);
-        commonUtil.refresh(webDriver);;
-        webDriver.sleep(3000);
         webDriver.elementById(GaodunCluePageUI.CLUE_CLUE).click();//点击线索管理
-        webDriver.sleep(3000);
+        webDriver.sleep(500);
         webDriver.waitForElementByXPath(GaodunCluePageUI.CLUE_GETBYPHONE).sendKeys(repeat);//输入已存在的手机号
         webDriver.elementByXPath(GaodunCluePageUI.CLUE_SEARCH).click();//查询
         webDriver.sleep(4000);
         webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BACK).get(0).click();//勾选
-       // webDriver.elementsByCss("input[name=\"ck\"]").get(0).click();//勾选
     }
     public void addClueCommunication(String repeatTel1) throws  Exception{
         webDriver.sleep(2000);
@@ -1446,13 +1397,17 @@ public class GaodunCluePage extends BasePages {
         nextLine();
         webDriver.elementByClassName(GaodunCluePageUI.CLUE_SOURCE).click();// 客户来源
         webDriver.sleep(1000);
-        webDriver.elementByXPath("(.//*[normalize-space(text()) and normalize-space(.)='网校用户'])[1]/following::li[1]").click();
+        webDriver.elementByXPath("(.//*[normalize-space(text()) and normalize-space(.)='试听申请'])[1]/following::li[1]").click();
         webDriver.elementByClassName(GaodunCluePageUI.CLUE_NOTES).sendKeys("1881234123418812341234");// 备注
     }//必填项
     public void addClueAction(String action) throws  Exception{
+        System.out.print("queren"+"========================1======baocun");
+        System.out.print("queren-----"+action+"========================1======baocun");
         if (action.equals("确认")){
+            System.out.print("queren"+"=====================2=========baocun");
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(0).click();// 确认自动分配
         }else if (action.equals("保存")){
+            System.out.print("queren"+"===================3===========baocun");
             webDriver.elementsByClassName(GaodunCluePageUI.CLUE_BTN).get(1).click();// 保存不自动分配
         }else { };
     }//确认or保存
