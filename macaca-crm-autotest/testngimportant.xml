@@ -6,17 +6,18 @@
 		<parameter name="elementTimeInterval" value="2000"></parameter>
 		<groups>
 			<run>
-				<include name="Green" />
+				<include name="important" />
 			</run>
 		</groups>
 		<classes >
 			<!--<class name="com.javademo.cases.testClue" ></class>-->
-			<class name="com.javademo.cases.testOrder" ></class>
-			<class name="com.javademo.cases.testOrder2" ></class>
+			<class name="com.javademo.cases.testOrderImportantFirst" ></class>
+			<class name="com.javademo.cases.testOrderImportantSecond" ></class>
+			<class name="com.javademo.cases.testView" ></class>
 		</classes>
 	</test>
     <listeners>
-        <!--<listener class-name="extentx.ExtentTestNGITestListener"></listener>-->
+        <listener class-name="extentx.ExtentTestNGITestListener"></listener>
 		<!--<listener class-name="com.javademo.utils.RetryListener" />-->
 		<!--<listener class-name="com.javademo.utils.TestngListener" />-->
     </listeners>

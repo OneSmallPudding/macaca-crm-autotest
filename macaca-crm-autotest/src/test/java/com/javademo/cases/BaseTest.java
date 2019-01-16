@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 
 import macaca.client.MacacaClient;
@@ -16,9 +18,7 @@ import macaca.java.biz.ResultGenerator;
 import macaca.java.biz.BaseMacacaClient.PlatformType;
 import com.javademo.utils.Config;
 import com.alibaba.fastjson.JSONObject;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
@@ -33,12 +33,12 @@ public class BaseTest {
 /*
     @Parameters({ "elementTimeout", "elementTimeInterval" })
 */
-    @BeforeTest(groups = {"AllClue","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
+    @BeforeClass(groups = {"important","A","AllClue","Green","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void setUp() throws Exception {
         getDriver();
-    }
+   }
     
-    @AfterTest(groups = {"AllClue","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
+    @AfterClass(groups = {"important","A","AllClue","Green","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void tearDown() throws Exception {
 
         try {
@@ -48,18 +48,23 @@ public class BaseTest {
             // TODO: handle exception
             ResultGenerator.fail("quit fail", "", BaseErrorType.FUNCTION_FAILED);
         }
-
     }
-
+    @AfterTest(groups = {"important"})
+    public void savecrmcut()throws Exception{
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println("======"+df.format(new Date())+"=======");// new Date()为获取当前系统时间
+        saveScreen("crm-截图",df.format(new Date()));
+    }
     /**
      * 保存当前屏幕截图-生成的截图会按照截图的先后顺序生成有序的名称
      *
      * @param fileName 图片名称，默认为.png格式,图片默认保存在screenShot目录下
      */
-    public void saveScreen(String fileName,int screenNum) {
+    public void saveScreen(String fileName,String screenNum) {
         try {
             // 判断是否存在对应目录，不存在的话则创建
-            File file = new File(Config.SCREEN_SHOT_PATH);
+//            File file = new File(Config.SCREEN_SHOT_PATH);
+            File file = new File("D:\\CrmCutPng");
             if (!file.exists() || !file.isDirectory()) {
                 // 没有目录 创建截屏目录
                 System.out.println("没有screenshot目录，创建目录");
@@ -73,7 +78,8 @@ public class BaseTest {
                 System.out.println("存在screenshot目录");
             }
 
-            webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
+           // webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
+            webDriver.saveScreenshot("D:\\CrmCutPng"+ File.separator + screenNum + "_" + fileName + ".png");
           //  screenNum++;
         } catch (Exception e) {
             // TODO: handle exception

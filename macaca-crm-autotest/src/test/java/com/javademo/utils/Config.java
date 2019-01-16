@@ -10,7 +10,7 @@ public class Config {
 
 
     public static final String databaseUrl         = ""; //test
-    /*   //pre
+       //pre
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:13307";
     public static final String  DATABASE_NAME      = "gaodun_beta";
     public static final String  DATABASE_PWD       = "gasb43Fcsg";
@@ -20,6 +20,8 @@ public class Config {
     public static final String  cmsUrl             = "https://pre-baiyi.gaodun.com/#/login" ; //test
     public static final String  cmsCommentUrl      = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ; //test
     public static final String  cmsCluesUrl      = "https://pre-baiyi.gaodun.com/#/Index" ; //test
+    public static final String  cmsTableManage      = "https://pre-baiyi.gaodun.com/#/tableManage" ; //test
+    public static final String  cmsClass      = "https://pre-baiyi.gaodun.com/#/class" ; //test
     public static final String  cmsOrderUrl        = "https://pre-baiyi.gaodun.com/#/order" ;//test
     public static final String  cmsCluesIndexUrl      = "https://pre-baiyi.gaodun.com/#/cluesIndex" ; //test
     public static final String  cmsUserTel         = "12300475413";//test
@@ -30,8 +32,8 @@ public class Config {
     public static final String  repeatTel13         = "10505973503";//  crm项目别人名下的手机号
     public static final String  cmsClueUrl         = "https://pre-baiyi.gaodun.com/#/cluesIndex";
     public static final String  cmsAddClientUrl    = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ;
-*/
-   /* //test
+
+    /* //test
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:3306";
     public static final String  DATABASE_NAME      = "gaodun_test";
     public static final String  DATABASE_PWD       = "414639e58d";
@@ -59,9 +61,9 @@ public class Config {
 //    public static final String  cmsUserPwd         = "gaodun1234";
 
     public static final String  cmsUserName        = "auto_personal_5@gaodun.com";
-    public static final String  cmsUserPwd         = "123456q";
+    public static final String  cmsUserPwd         = "123456w";
 
-  //   //RPOD
+ /* //   //RPOD
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:9988";
     public static final String  DATABASE_NAME      = "dev";
     public static final String  DATABASE_PWD       = "ji35LEWiR5";
@@ -81,7 +83,7 @@ public class Config {
 //    public static final String  Table      = "Tpo_Sys_Users" ; //prod
     public static final String  Table      = "tpo_sys_users" ; //prod
     public static final String  Table1      = "tpo_sys_department_user" ; //prod
-    public static final String  Table2      = "tpo_sys_departments" ; //prod
+    public static final String  Table2      = "tpo_sys_departments" ; //prod*/
 
 
     public static final int     readScore          = 10;

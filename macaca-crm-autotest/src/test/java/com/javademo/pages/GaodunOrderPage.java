@@ -157,14 +157,15 @@ public class GaodunOrderPage extends BasePages{
         }
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_SAVE).click();
-        webDriver.sleep(2000);
-        String values = webDriver.elementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
-        System.out.print(values+"----------========-----------------");
+        webDriver.sleep(1000);
+        String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
+        System.out.print(values+"================");
+        System.out.print(hint+"================");
         webDriver.sleep(2000);
         commonUtil.close(webDriver);
         webDriver.sleep(2000);
         switchToWindows(0);
-        if (values.contains(hint)){
+        if (values.equals(hint)){
             flag =true;
         }else {
             flag=false;

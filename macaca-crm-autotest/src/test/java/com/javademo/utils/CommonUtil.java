@@ -110,7 +110,7 @@ public class CommonUtil {
     public static int getNum(int start,int end) {
         return (int)(Math.random()*(end-start+1)+start);
     }
-    public static String[] telFirst="104,105,106,107,108,109,100,101,102,107,108,109,100,101,102,105,106,103,103".split(",");
+    public static String[] telFirst="134,135,136,137,138,139,133,131,132,137,138,139,133,131,132,135,136,133".split(",");
     public  String getTel() {
         int index=getNum(0,telFirst.length-1);
         String first=telFirst[index];

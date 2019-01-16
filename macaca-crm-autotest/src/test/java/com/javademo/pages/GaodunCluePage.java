@@ -409,7 +409,7 @@ public class GaodunCluePage extends BasePages {
         webDriver.sleep(3000);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String date = df.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
-        webDriver.saveScreenshot("D:\\crmcut\\"+date+"50.png");
+        webDriver.saveScreenshot("D:\\CrmCutPng\\ORDER_50"+date+".png");
         try {
             webDriver.elementByLinkText(">>").click();//点击》》
             flag =false;
