@@ -38,13 +38,13 @@ public class testOrderImportantSecond extends BaseTest {
         boolean flag = gaodunOrderPage.orderPay_40("确定","订单已成功提交","提交");
         assertTrue(flag);
     };
-    @Test(priority = 10,groups = {"AllOrder"})
+    @Test(priority = 10,groups = {"important"})
     public void order_125() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.orderAbnormal_124("待审核","未完款");
         assertTrue(flag);
     }
-    @Test(priority = 18,groups = {"AllOrder","AllOrder1"})
+    @Test(priority = 18,groups = {"important"})
     public void order_70() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag = gaodunOrderPage.orderPay_68("未完成订单","订单金额未对冲为0，不能取消订单");
@@ -68,7 +68,7 @@ public class testOrderImportantSecond extends BaseTest {
         boolean flag = gaodunOrderPage.orderPay_40("确定","订单金额未对冲为0，不能取消订单","更多-取消");
         assertTrue(flag);
     };
-    @Test(priority = 23,groups = {"AllOrder"})
+   /* @Test(priority = 23,groups = {"important"})
     public void order_131() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.orderAbnormal_124("完成","已完款");
@@ -79,7 +79,7 @@ public class testOrderImportantSecond extends BaseTest {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag = gaodunOrderPage.orderPay_40("确定","订单已成功提交","提交");
         assertTrue(flag);
-    };
+    };*/
     @Test(priority = 25,groups = {"important"})
     public void order_48() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
@@ -122,11 +122,16 @@ public class testOrderImportantSecond extends BaseTest {
         boolean flag = gaodunOrderPage.orderPay_40("确定","订单金额未对冲为0，不能取消订单","更多-取消");
         assertTrue(flag);
     };
-    @Test(priority = 75,groups = {"AllOrder"})
+    @Test(priority = 75,groups = {"important"})
     public void order_136() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.orderRecommend("111","是");
         assertTrue(flag);
     }
-
+    @Test(priority = 66,groups = {"important"})
+    public void order_131() throws Exception {
+        gaodunOrderPage.setDriver(webDriver);
+        boolean flag =gaodunOrderPage.orderAbnormal_124("完成","审核退回");
+        assertTrue(flag);
+    }
 }
