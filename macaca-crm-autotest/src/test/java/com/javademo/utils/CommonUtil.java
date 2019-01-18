@@ -84,6 +84,14 @@ public class CommonUtil {
         int windowHeight      = windowSize.getIntValue("height");
         driver.drag(windowWidth-200,200,windowWidth-200,windowHeight-200,0.5);
     }
+    public  void  pageEnd(MacacaClient webDriver) throws  Exception{
+        webDriver.sleep(500);
+        char[] end = {'\ue010'};
+        char[] enter = {'\uE007'};
+        webDriver.keys(new String(end));
+        webDriver.keys(new String(enter));
+    }
+
 
 
     //元素垂直滚动(从下往上)

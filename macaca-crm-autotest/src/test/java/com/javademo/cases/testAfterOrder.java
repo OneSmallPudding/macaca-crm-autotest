@@ -5,15 +5,15 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class testAfterOrder extends BaseTest {
+public class testAfterOrder extends BaseTest{
     GaodunOrderPage gaodunOrderPage =    new GaodunOrderPage("订单页面");
-    @Test(priority = 1,groups = {"AllOrder","AllOrder5"})
+ @Test(priority = 1,groups = {"AllOrder","AllOrder5"})
     public void order_1() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.addOrder(0,"保存成功");
         assertTrue(flag);
     }
-    @Test(priority = 2,groups = {"AllOrder","AllOrder5"})
+   @Test(priority = 2,groups = {"AllOrder","AllOrder5"})
     public void order_85() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.orderSplit(0,0);

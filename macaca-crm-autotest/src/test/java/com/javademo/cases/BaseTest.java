@@ -9,7 +9,9 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.ArrayList;
 
+import com.google.common.collect.ImmutableList;
 import macaca.client.MacacaClient;
 import macaca.client.common.MacacaDriver;
 import macaca.java.biz.BaseErrorType;
@@ -35,7 +37,7 @@ public class BaseTest {
 */
     @BeforeClass(groups = {"important","A","AllClue","Green","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void setUp() throws Exception {
-        getDriver();
+        webDriver = getDriver();
    }
     
     @AfterClass(groups = {"important","A","AllClue","Green","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
@@ -120,31 +122,35 @@ public class BaseTest {
 
     public static ThreadLocal<MacacaClient> ThreadDriver=new ThreadLocal<MacacaClient>();
 
-    MacacaClient getDriver() throws  Exception{
-        MacacaClient driver=ThreadDriver.get();
-        if(driver==null){//如果当前线程没有绑定driver，则根据.xml配置文件创建driver并使用ThreadDriver.set()方法绑定到线程中。
+
+    public static   MacacaClient getDriver() throws  Exception{
+        MacacaClient webDriver=ThreadDriver.get();
+        ArrayList<String> args = new ArrayList<String>();
+        args.add("--headless");
+        args.add("--disable-gpu");
+        if(webDriver==null){//如果当前线程没有绑定driver，则根据.xml配置文件创建driver并使用ThreadDriver.set()方法绑定到线程中。
             JSONObject  prefs = new JSONObject();
             // 设置提醒的设置，2表示block
             prefs.put("profile.default_content_setting_values.notifications", 2);
             JSONObject  prefs1 = new JSONObject();
             prefs1.put("prefs",prefs);
-
+            prefs1.put("args", ImmutableList.copyOf(args));
             JSONObject porps = new JSONObject();
             porps.put("browserName", "chrome");
             porps.put("platformName", "desktop");
             porps.put("chromeOptions",prefs1);
-
             JSONObject desiredCapabilities = new JSONObject();
             desiredCapabilities.put("desiredCapabilities", porps);
+            webDriver = new MacacaClient();
             webDriver.initDriver(desiredCapabilities).maximize().get(Config.cmsUrl);
             webDriver.sleep(2000);
             webDriver.elementsByClassName("el-input__inner").get(0).sendKeys(Config.cmsUserName);
             webDriver.elementsByClassName("el-input__inner").get(1).sendKeys(Config.cmsUserPwd);
             webDriver.elementByClassName("el-button").click();
             webDriver.sleep(3000);
-            ThreadDriver.set(driver);
+            ThreadDriver.set(webDriver);
         }
-        return driver;
+        return webDriver;
     }
 
 }

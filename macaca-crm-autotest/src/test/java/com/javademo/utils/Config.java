@@ -32,6 +32,12 @@ public class Config {
     public static final String  repeatTel13         = "10505973503";//  crm项目别人名下的手机号
     public static final String  cmsClueUrl         = "https://pre-baiyi.gaodun.com/#/cluesIndex";
     public static final String  cmsAddClientUrl    = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ;
+//    //营销管理
+//    public static final String addMms ="https://pre-baiyi.gaodun.com/#/information/MmsMessageCreate";//新建彩信模板
+//    public static final String addMessage="https://pre-baiyi.gaodun.com/#/information/messageCreate";//新建短信模板
+//    public static final String addMarketactivity ="https://pre-baiyi.gaodun.com/#/marketing/add";//新建市场营销活动
+//    public static final String marketList ="https://pre-baiyi.gaodun.com/#/marketing/list";//市场营销活动列表
+
 */
 
 
@@ -54,6 +60,12 @@ public class Config {
     public static final String  Table      = "Tpo_Sys_Users" ; //test
     public static final String  Table1      = "Tpo_Sys_Department_User" ; //test
     public static final String  Table2      = "Tpo_Sys_Departments" ; //test
+    //    //营销管理
+//    public static final String addMms ="https://pre-baiyi.gaodun.com/#/information/MmsMessageCreate";//新建彩信模板
+//    public static final String addMessage="https://pre-baiyi.gaodun.com/#/information/messageCreate";//新建短信模板
+//    public static final String addMarketactivity ="https://pre-baiyi.gaodun.com/#/marketing/add";//新建市场营销活动
+//    public static final String marketList ="https://pre-baiyi.gaodun.com/#/marketing/list";//市场营销活动列表
+
     */
 
 //    public static final String  cmsUserName        = "admin@gaodun.com";
@@ -89,9 +101,15 @@ public class Config {
     public static final String  Table      = "tpo_sys_users" ; //prod
     public static final String  Table1      = "tpo_sys_department_user" ; //prod
     public static final String  Table2      = "tpo_sys_departments" ; //prod
+  //    //营销管理
+    public static final String addMms ="https://baiyi.gaodun.com/#/information/MmsMessageCreate";//新建彩信模板
+    public static final String addMessage="https://baiyi.gaodun.com/#/information/messageCreate";//新建短信模板
+    public static final String addMarketactivity ="https://baiyi.gaodun.com/#/marketing/add";//新建市场营销活动
+    public static final String marketList ="https://baiyi.gaodun.com/#/marketing/list";//市场营销活动列表
 
 
-    public static final int     readScore          = 10;
+
+  public static final int     readScore          = 10;
     public static final int     readMaxScore       = 60;
     public static final int     commentScore       = 20;
     public static final int     commentMaxScore    = 300;

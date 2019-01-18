@@ -29,13 +29,7 @@
 				<class name="com.javademo.cases.testClueSearch" ></class>
 			</classes>
 		</test>
-	<test name="test5" preserve-order="true">
-			<parameter name="elementTimeout" value="50000"></parameter>
-			<parameter name="elementTimeInterval" value="2000"></parameter>
-			<classes >
-				<class name="com.javademo.cases.testAfterOrder" ></class>
-			</classes>
-		</test>
+
     <listeners>
         <!--<listener class-name="extentx.ExtentTestNGITestListener"></listener>-->
 		<listener class-name="com.javademo.utils.RetryListener" />
