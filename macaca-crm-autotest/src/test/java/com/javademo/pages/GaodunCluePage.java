@@ -42,7 +42,7 @@ public class GaodunCluePage extends BasePages {
         System.out.print(repeatTelACCA+"repeatTelACCA");
         addTest(repeatTel1,"毕马威","确认");
         addTest(repeatTel2,"毕马威","确认");
-        addTest(repeatTelACCA,"阿米巴","确认");
+//        addTest(repeatTelACCA,"阿米巴","确认");
     }
     public void addTest1() throws Exception{
         repeatTel1 = commonUtil.getTel();//测试数据1 -单一项目

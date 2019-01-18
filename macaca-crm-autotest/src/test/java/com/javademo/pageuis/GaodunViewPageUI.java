@@ -69,7 +69,7 @@ public class GaodunViewPageUI {
     public static final String    PROD_ADDPRICE="(.//*[normalize-space(text()) and normalize-space(.)='价格'])[4]/following::input[1]";
     public static final String    PROD_ADDPERIOD="(.//*[normalize-space(text()) and normalize-space(.)='周期 (月)'])[1]/following::input[1]";
     public static final String    PROD_ADDCOURSE="(.//*[normalize-space(text()) and normalize-space(.)='课程性质'])[1]/following::input[1]";
-    public static final String    PROD_ADDSAVE="(.//*[normalize-space(text()) and normalize-space(.)='保存'])[1]/following::button[1]";
+    public static final String    PROD_ADDSAVE="(.//*[normalize-space(text()) and normalize-space(.)='取消'])[1]/preceding::button[1]";
     public static final String    PROD_FIRSTNAME="(.//*[normalize-space(text()) and normalize-space(.)='操作'])[2]/following::div[3]";
     public static final String    PROD_SEARCH="(.//*[normalize-space(text()) and normalize-space(.)='生成班级'])[1]/following::input[1]";
     public static final String    PROD_SEARCHBTN="(.//*[normalize-space(text()) and normalize-space(.)='生成班级'])[1]/following::i[1]";

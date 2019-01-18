@@ -10,7 +10,7 @@ public class Config {
 
 
     public static final String databaseUrl         = ""; //test
-       //pre
+    /*   //pre
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:13307";
     public static final String  DATABASE_NAME      = "gaodun_beta";
     public static final String  DATABASE_PWD       = "gasb43Fcsg";
@@ -32,6 +32,8 @@ public class Config {
     public static final String  repeatTel13         = "10505973503";//  crm项目别人名下的手机号
     public static final String  cmsClueUrl         = "https://pre-baiyi.gaodun.com/#/cluesIndex";
     public static final String  cmsAddClientUrl    = "https://pre-baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ;
+*/
+
 
     /* //test
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:3306";
@@ -61,9 +63,9 @@ public class Config {
 //    public static final String  cmsUserPwd         = "gaodun1234";
 
     public static final String  cmsUserName        = "auto_personal_5@gaodun.com";
-    public static final String  cmsUserPwd         = "123456w";
+    public static final String  cmsUserPwd         = "123456q";
 
- /* //   //RPOD
+  //   //RPOD
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:9988";
     public static final String  DATABASE_NAME      = "dev";
     public static final String  DATABASE_PWD       = "ji35LEWiR5";
@@ -80,10 +82,13 @@ public class Config {
     public static final String  cmsCluesIndexUrl      = "https://baiyi.gaodun.com/#/cluesIndex" ; //prod
     public static final String  cmsAddClientUrl      = "https://baiyi.gaodun.com/#/clue/addClientele?nid=521&nw=1" ; //prod
     public static final String  cmsClueUrl      = "https://baiyi.gaodun.com/#/cluesIndex" ; //prod
-//    public static final String  Table      = "Tpo_Sys_Users" ; //prod
+    public static final String  cmsTableManage      = "https://baiyi.gaodun.com/#/tableManage" ; //test
+    public static final String  cmsClass      = "https://baiyi.gaodun.com/#/class" ; //test
+
+    //    public static final String  Table      = "Tpo_Sys_Users" ; //prod
     public static final String  Table      = "tpo_sys_users" ; //prod
     public static final String  Table1      = "tpo_sys_department_user" ; //prod
-    public static final String  Table2      = "tpo_sys_departments" ; //prod*/
+    public static final String  Table2      = "tpo_sys_departments" ; //prod
 
 
     public static final int     readScore          = 10;

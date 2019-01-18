@@ -49,12 +49,7 @@ public class BaseTest {
             ResultGenerator.fail("quit fail", "", BaseErrorType.FUNCTION_FAILED);
         }
     }
-    @AfterMethod(groups = {"important"})
-    public void savecrmcut()throws Exception{
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        System.out.println("======"+df.format(new Date())+"=======");// new Date()为获取当前系统时间
-        saveScreen("crm-截图",df.format(new Date()));
-    }
+
     /**
      * 保存当前屏幕截图-生成的截图会按照截图的先后顺序生成有序的名称
      *
@@ -79,7 +74,7 @@ public class BaseTest {
             }
 
            // webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
-            webDriver.saveScreenshot("D:\\CrmCutPng"+ File.separator + screenNum + "_" + fileName + ".png");
+            webDriver.saveScreenshot("D:\\CrmCutPng"+ screenNum + "_" + fileName + ".png");
           //  screenNum++;
         } catch (Exception e) {
             // TODO: handle exception

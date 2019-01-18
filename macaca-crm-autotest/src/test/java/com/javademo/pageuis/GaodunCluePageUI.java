@@ -18,7 +18,7 @@ public class GaodunCluePageUI {
     public static final String  CLUE_DAREGRID =  "datagrid-cell";//跟进
     public static final String  CLUE_CHAT =  "//div/div/div/textarea";//沟通记录
     public static final String  CLUE_CLOSEWINDOWS =  "btn-close";//关闭自动领取弹窗
-    public static final String  CLUE_SETBACK = "(.//*[normalize-space(text()) and normalize-space(.)='报名'])[2]/following::button[1]";//踢回公池
+    public static final String  CLUE_SETBACK = "(.//*[normalize-space(text()) and normalize-space(.)='报名'])[1]/following::button[1]";//踢回公池
     public static final String  CLUE_GETBACK = "(.//*[normalize-space(text()) and normalize-space(.)='自助领取'])[2]/following::input[1]";//领取查询
     public static final String  CLUE_GETBACKCLICK = "(.//*[normalize-space(text()) and normalize-space(.)='自助领取'])[2]/following::span[2]";//领取查询点击
     public static final String  CLUE_GET = "/html/body/div[2]/div[2]/div[2]/div/div[2]/div/div[4]/div[2]/table/tbody/tr/td[5]/div/button/span/a";//领取

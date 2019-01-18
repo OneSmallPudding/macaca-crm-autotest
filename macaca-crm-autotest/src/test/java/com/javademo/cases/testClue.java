@@ -1,8 +1,13 @@
 package com.javademo.cases;
 import com.javademo.pages.GaodunCluePage;
 import com.javademo.utils.CommonUtil;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.testng.Assert.assertTrue;
 
@@ -14,8 +19,15 @@ public class testClue extends BaseTest {
     String  repeatTel8;
     CommonUtil commonUtil = new CommonUtil();
 
+    @AfterTest
+    public void savecrmcut()throws Exception{
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println("======"+df.format(new Date())+"=======");// new Date()为获取当前系统时间
+        //saveScreen("crm-截图",df.format(new Date()));
+        webDriver.saveScreenshot("D:\\CrmCutPng\\"+ "crm-截图_" + df.format(new Date()) + ".png");
+    }
 
-    @Test(priority = 1,groups = {"AllClue"})
+   /* @Test(priority = 1,groups = {"AllClue"})
     public void test() throws Exception{
         gaodunCluePage.setDriver(webDriver);
         gaodunCluePage.addTest();
@@ -116,7 +128,13 @@ public class testClue extends BaseTest {
         gaodunCluePage.setDriver(webDriver);
         boolean flag = gaodunCluePage.queryOwner_xsgl_14();
         assertTrue(flag);
-    };
+    };*/
+   @Test(priority = 1,groups = {"AllClue"})
+   public void test() throws Exception {
+       gaodunCluePage.setDriver(webDriver);
+       gaodunCluePage.addTest();
+   }
+
     @Test(priority = 16,groups = {"AllClue","Green"})
     public void xsgl_15() throws Exception {
         gaodunCluePage.setDriver(webDriver);
@@ -135,7 +153,7 @@ public class testClue extends BaseTest {
         boolean flag = gaodunCluePage.receive_xsgl_17();
         assertTrue(flag);
     };
-    @Test(priority = 19,groups = {"AllClue","Green"})
+   /* @Test(priority = 19,groups = {"AllClue","Green"})
     public void xsgl_18() throws Exception {
         gaodunCluePage.setDriver(webDriver);
         boolean flag = gaodunCluePage.receive_xsgl_18();
@@ -355,7 +373,7 @@ public class testClue extends BaseTest {
         cluePage.setDriver(webDriver);
         cluePage.book();
     }
-
+*/
 
 }
 

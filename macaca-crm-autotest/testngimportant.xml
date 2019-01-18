@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite1"  parallel="tests" thread-count="3">
-	<test name="test2" preserve-order="true">
+	<test name="test2" preserve-order="true" >
 		<parameter name="elementTimeout" value="50000"></parameter>
 		<parameter name="elementTimeInterval" value="2000"></parameter>
 		<groups>
