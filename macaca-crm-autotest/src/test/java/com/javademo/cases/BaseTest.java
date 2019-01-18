@@ -42,7 +42,7 @@ public class BaseTest {
     public void tearDown() throws Exception {
 
         try {
-             webDriver.quit();
+             //webDriver.quit();
              webDriver.execute("window.close()");
         } catch (Exception e) {
             // TODO: handle exception
@@ -64,7 +64,7 @@ public class BaseTest {
         try {
             // 判断是否存在对应目录，不存在的话则创建
 //            File file = new File(Config.SCREEN_SHOT_PATH);
-            File file = new File("D:\\CrmCutPng");
+            File file = new File("//var//root//Desktop//CrmCutPng");
             if (!file.exists() || !file.isDirectory()) {
                 // 没有目录 创建截屏目录
                 System.out.println("没有screenshot目录，创建目录");
@@ -79,7 +79,7 @@ public class BaseTest {
             }
 
            // webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
-            webDriver.saveScreenshot("D:\\CrmCutPng"+ File.separator + screenNum + "_" + fileName + ".png");
+            webDriver.saveScreenshot("//var//root//Desktop//CrmCutPng"+ File.separator + screenNum + "_" + fileName + ".png");
           //  screenNum++;
         } catch (Exception e) {
             // TODO: handle exception

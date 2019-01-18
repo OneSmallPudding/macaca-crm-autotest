@@ -345,7 +345,7 @@ public class GaodunOrderPage extends BasePages{
         webDriver.keys(new String(enter));
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERGETPAYBTN).click();//点击支付框的确认
-        webDriver.sleep(2500);
+        webDriver.sleep(500);
         String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
         System.out.print(values+"-------------------------------------");
         webDriver.sleep(2000);
@@ -814,7 +814,7 @@ public class GaodunOrderPage extends BasePages{
         getOrderByPhone(repeatName8,action);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_ORDERPAYDIS).click();//取消
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_ORDERPAYDISBTN).click();//确定
-        webDriver.sleep(3000);
+        webDriver.sleep(500);
         String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
         System.out.print(values+"-------------------------------------");
         if (values.contains(hint)){
@@ -959,7 +959,7 @@ public class GaodunOrderPage extends BasePages{
                 webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_RECOMMENDNO).click();//否
 
             }
-            if (author!=""){
+            if (!author.equals((""))){
                 webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_RECOMMENDAUTHOR).sendKeys(author);//推荐人
             }
             webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_RECOMMENDSAVE).click();//保存

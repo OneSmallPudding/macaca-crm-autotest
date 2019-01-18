@@ -39,7 +39,7 @@
 	<!--</test>-->
     <listeners>
         <listener class-name="extentx.ExtentTestNGITestListener"></listener>
-		<!--<listener class-name="com.javademo.utils.RetryListener" />-->
-		<!--<listener class-name="com.javademo.utils.TestngListener" />-->
+		<listener class-name="com.javademo.utils.RetryListener" />
+		<listener class-name="com.javademo.utils.TestngListener" />
     </listeners>
 </suite>

@@ -128,7 +128,7 @@ public class testOrderImportantSecond extends BaseTest {
         boolean flag =gaodunOrderPage.orderRecommend("111","是");
         assertTrue(flag);
     }
-    @Test(priority = 66,groups = {"important"})
+    @Test(priority = 80,groups = {"important"})
     public void order_131() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
         boolean flag =gaodunOrderPage.orderAbnormal_124("完成","审核退回");
