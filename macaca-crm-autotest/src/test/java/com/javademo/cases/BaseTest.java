@@ -39,10 +39,15 @@ public class BaseTest {
     public void setUp() throws Exception {
         webDriver = getDriver();
    }
+   @AfterTest
+   public  void cut() throws  Exception{
+       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");//设置日期格式
+       System.out.println("======"+df.format(new Date())+"=======");// new Date()为获取当前系统时间
+       webDriver.saveScreenshot("D:\\CrmCutPng\\"+ "crm-截图_" + df.format(new Date()) + ".png");
+   }
     
     @AfterClass(groups = {"important","A","AllClue","Green","AllClueSearch","AllOrder","AllOrder1","AllOrder2","AllOrder3","AllOrder4"})
     public void tearDown() throws Exception {
-
         try {
              webDriver.quit();
              webDriver.execute("window.close()");
@@ -75,7 +80,7 @@ public class BaseTest {
                 System.out.println("存在screenshot目录");
             }
 
-           // webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
+           webDriver.saveScreenshot(Config.SCREEN_SHOT_PATH + File.separator + screenNum + "_" + fileName + ".png");
             webDriver.saveScreenshot("D:\\CrmCutPng"+ screenNum + "_" + fileName + ".png");
           //  screenNum++;
         } catch (Exception e) {

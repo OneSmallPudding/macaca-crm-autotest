@@ -1,7 +1,7 @@
 package com.javademo.pageuis;
 
 public class GaodunViewPageUI {
-    public static final String    VIEW_BUILT =  "(.//*[normalize-space(text()) and normalize-space(.)='测试'])[1]/following::button[1]";//新建视图
+    public static final String    VIEW_BUILT =  "(.//*[normalize-space(text()) and normalize-space(.)='修改视图'])[1]/preceding::span[1]";//新建视图
     public static final String    VIEW_CONDITION =  "(.//*[normalize-space(text()) and normalize-space(.)='操作'])[1]/following::input[1]";//名称
     public static final String    VIEW_VIEWNAME =  "(.//*[normalize-space(text()) and normalize-space(.)='视图名称'])[1]/following::input[1]";//条件
     public static final String    VIEW_VALUE =  "(.//*[normalize-space(text()) and normalize-space(.)='操作'])[1]/following::input[3]";//值
@@ -30,6 +30,7 @@ public class GaodunViewPageUI {
     public static final String    VIEW_TIME2 =  "(.//*[normalize-space(text()) and normalize-space(.)='-'])[1]/following::input[1]";//时间
     public static final String    VIEW_PAGE =  "(.//*[normalize-space(text()) and normalize-space(.)='前往页'])[1]/preceding::input[1]";//页码
     public static final String    VIEW_PAGE1 =  "(.//*[normalize-space(text()) and normalize-space(.)='测试'])[1]/following::span[6]";//页码
+    public static final String    VIEW_PAGE2 = "(.//*[normalize-space(text()) and normalize-space(.)='是否有号码'])[1]/following::span[6]";//页码
     public static final String    VIEW_CHANGEVIEW =  "(.//*[normalize-space(text()) and normalize-space(.)='新建视图'])[1]/following::span[1]";//修改视图
     public static final String    VIEW_VIEW =  "(.//*[normalize-space(text()) and normalize-space(.)='修改视图'])[1]/following::span[1]";//修改视图
     public static final String    VIEW_ADD1 =  "(.//*[normalize-space(text()) and normalize-space(.)='上月'])[1]/following::a[1]";//添加1

@@ -29,10 +29,11 @@ public class GaodunViewPage extends BasePages {
         String tel = commonUtil.getTel();
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VIEWNAME).sendKeys("视图测试" + tel);//视图名称
         System.out.println("======视图测试" + tel + "=========");
-        deployClueId();
         webDriver.sleep(2000);
         if (status.equals("9")||status.equals("11")){
             deployOrderId();//配置订单id
+        }else {
+            deployClueId();
         }
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_CONDITION).sendKeys(type);//条件
         commonUtil.nextOneLine(webDriver);
@@ -51,18 +52,10 @@ public class GaodunViewPage extends BasePages {
             webDriver.keys(new String(enter));
             webDriver.sleep(1000);
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUEINPUTCLICK).click();//选择关键字
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUECONFIG).click();//配置
-//            webDriver.sleep(2000);
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUEPLAN).click();//
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUEPLANSAVE).click();//保存配置
         } else if (status.equals("4")) {
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUECLICK).click();//条件
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUEAUTO).click();//值
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUEAUTO9).click();//选择auto9
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUECONFIG).click();//配置
-//            webDriver.sleep(2000);
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_ASSOCIATES).click();
-//            webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_ASSOCIATESSAVE).click();//保存配置
         }else if (status.equals("11")){
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_TIME1).sendKeys(firstday);
             char[] tab = {'\uE004'};
@@ -72,36 +65,45 @@ public class GaodunViewPage extends BasePages {
         }
        save(tel);
         webDriver.sleep(2000);
+        JSONArray sqlarray=null;
         JSONArray array = null;
-       /* if (status.equals("1")) {
-             array = commonUtil.getElementByClassName("contact_name", webDriver);
-            System.out.print(array + "===============================");
+        if (status.equals("1")) {
+             sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_1,"线索编号");
         } else if (status.equals("2")) {
-             array = commonUtil.getElementByClassName("view-phone-number", webDriver);
-            System.out.print(array + "===============================");
+           // JSONArray sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_2,"线索编号");
         }else if (status.equals("3")) {
-             array = commonUtil.getElementByClassName("beyond-hidden-2", webDriver);
-            System.out.print(array + "===============================");
+             sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_3,"线索编号");
         }else if (status.equals("4")) {
-             array = commonUtil.getElementByClassName("beyond-hidden-2", webDriver);
-            System.out.print(array + "===============================");
-        }else if (status.equals("9")||status.equals("11")) {
-             array = commonUtil.getElementByClassName("datagrid-cell-c4-OrderNo", webDriver);
-            System.out.print(array + "===============================");
+             sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_4,"线索编号");
+        }else if (status.equals("9")) {
+             sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_9,"订单编号");
+            System.out.print(commonUtil.sql_view_9 + "===============================");
+        }else if (status.equals("11")) {
+             sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_11,"订单编号");
         }
-*/
-       if (status.equals("1")||status.equals("2")||status.equals("3")||status.equals("4")){
-           array = commonUtil.getElementByClassName("datagrid-cell-c4-ClueNo", webDriver);
+       if (status.equals("1")||status.equals("2")||status.equals("3")){
+           array = commonUtil.getElementByClassName("datagrid-cell-c2-ClueNo", webDriver);
            System.out.print(array + "===============================");
-       }else if (status.equals("9")||status.equals("11")) {
-           array = commonUtil.getElementByClassName("datagrid-cell-c4-OrderNo", webDriver);
+       }else if (status.equals("9")) {
+           array = commonUtil.getElementByClassName("datagrid-cell-c2-OrderNo", webDriver);
+           System.out.print(array + "===============================");
+       }else if (status.equals("11")) {
+           array = commonUtil.getElementByClassName("datagrid-cell-c2-OrderNo", webDriver);
+           System.out.print(array + "===============================");
+       }else if (status.equals("4")) {
+           array = commonUtil.getElementByClassName("datagrid-cell-c2-ClueNo", webDriver);
            System.out.print(array + "===============================");
        }
+        System.out.print(sqlarray + "===============================");
+        if (array.equals(sqlarray)){
+            flag=true   ;
+        }
         return flag;
 
     }
     public boolean view_13(String status)throws Exception {
         boolean flag = false;
+        JSONArray sqlarray=null;
         webDriver.get(Config.cmsTableManage);
         commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
@@ -115,6 +117,7 @@ public class GaodunViewPage extends BasePages {
             commonUtil.nextOneLine(webDriver);
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUECLICK).click();//值
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_PLAN).click();//部门
+            sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_21,"订单编号");
         }else if (status.equals("13")){
             deployClueId();
             webDriver.sleep(2000);
@@ -137,6 +140,7 @@ public class GaodunViewPage extends BasePages {
             commonUtil.nextOneLine(webDriver);
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUE3).sendKeys("在校");//值
             commonUtil.nextOneLine(webDriver);
+            sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_13,"线索编号");
         }else if (status.equals("24")){
             deployOrderId();
             webDriver.sleep(2000);
@@ -154,18 +158,22 @@ public class GaodunViewPage extends BasePages {
             commonUtil.nextOneLine(webDriver);
             webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VALUE12).sendKeys("代理订单");
             commonUtil.nextOneLine(webDriver);
+            //sqlarray=commonUtil.getDatasBySql(commonUtil.sql_view_24,"订单编号");
         }
         save(tel);
         webDriver.sleep(2000);
         JSONArray array = null;
         if (status.equals("13")) {
-             array = commonUtil.getElementByClassName("datagrid-cell-c4-ClueNo", webDriver);//获取线索id
+             array = commonUtil.getElementByClassName("datagrid-cell-c2-ClueNo", webDriver);//获取线索id
             System.out.print(array + "===============================");
-        }else if (status.equals("21")){
-            array = commonUtil.getElementByClassName("datagrid-cell-c4-OrderNo", webDriver);//获取订单id
+        }else if (status.equals("21")||status.equals("24")){
+            array = commonUtil.getElementByClassName("datagrid-cell-c2-OrderNo", webDriver);//获取订单id
             System.out.print(array + "===============================");
         }
-
+        System.out.print(sqlarray + "===============================");
+        if (array.equals(sqlarray)){
+            flag=true   ;
+        }
         return flag;
 
     }
@@ -187,7 +195,7 @@ public class GaodunViewPage extends BasePages {
         webDriver.sleep(1000);
         String values = webDriver.waitForElementByCss("p.el-message__content").getText();//提示信息
         System.out.print(values+"---------------======-----------------");
-        if (values.equals("共享成功")){
+        if (values.equals("共享成功!")){
             flag=true;
         }
         return flag;
@@ -201,18 +209,19 @@ public class GaodunViewPage extends BasePages {
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VIEW).click();//视图管理
         webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_START).click();//停用
+        webDriver.sleep(3000);
         String value1 = webDriver.elementsByClassName("el-button--small").get(1).getText();//操作按钮
         String value2 = webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_START1).getText();//状态
-        System.out.println(value1+"===============================");
-        System.out.println(value2+"===============================");
-        webDriver.sleep(1000) ;
+        System.out.println(value1+"===============================");//q
+        System.out.println(value2+"===============================");//t
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_START).click();//启用
-        String value3 = webDriver.elementsByClassName("el-button--small").get(1).getText();//操作按钮
-        String value4 = webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_START1).getText();//状态
-        System.out.println(value3+"===============================");
-        System.out.println(value4+"===============================");
         webDriver.sleep(1000);
         String values = webDriver.waitForElementByCss("p.el-message__content").getText();//提示信息
+        webDriver.sleep(3000) ;
+        String value3 = webDriver.elementsByClassName("el-button--small").get(1).getText();//操作按钮
+        String value4 = webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_START1).getText();//状态
+        System.out.println(value3+"===============================");//t
+        System.out.println(value4+"===============================");//q
         System.out.print(values+"---------------======-----------------");
         if (values.equals("操作成功")&&value1.equals(value4)&&value1.equals("启用")&&value2.equals(value3)&&value3.equals("停用")){
             flag=true;
@@ -318,7 +327,7 @@ public class GaodunViewPage extends BasePages {
     }
 
     public void save(String tel)throws Exception{
-        webDriver.sleep(1000);
+        webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_SAVE).click();//保存
         webDriver.sleep(1000);
         String values = webDriver.waitForElementByCss("p.el-message__content").getText();//提示信息
@@ -326,12 +335,12 @@ public class GaodunViewPage extends BasePages {
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_CHIOCE).sendKeys("视图测试" + tel);
         commonUtil.nextOneLine(webDriver);
         webDriver.sleep(3000);
-        webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_PAGE).click();
-        webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_PAGE1).click();
+
     }//配置线索id
     public void deployClueId()throws Exception{
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_CONFIG).click();
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_ID).click();
+        webDriver.sleep(1000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_IDSAVE).click();
     }//配置线索id
     public void deployOrderId()throws Exception{

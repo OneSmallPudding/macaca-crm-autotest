@@ -11,18 +11,18 @@ public class testView extends BaseTest {
     GaodunViewPage gaodunViewPage =    new GaodunViewPage("视图页面");
 
 
-    /*@Test(priority = 1,groups = {"important"})
+    @Test(priority = 1,groups = {"important"})
     public void view_1() throws Exception{
         gaodunViewPage.setDriver(webDriver);
         boolean flag =gaodunViewPage.view_1("1","联系人姓名","汪蕾");
         assertTrue(flag);
     };
-    @Test(priority = 2,groups = {"important"})
+   /* @Test(priority = 2,groups = {"important"})
     public void view_2() throws Exception{
         gaodunViewPage.setDriver(webDriver);
         boolean flag =gaodunViewPage.view_1("2","手机","13636534632");
         assertTrue(flag);
-    };
+    };*/
     @Test(priority = 3,groups = {"important"})
     public void view_3() throws Exception{
         gaodunViewPage.setDriver(webDriver);
@@ -84,7 +84,7 @@ public class testView extends BaseTest {
         gaodunViewPage.setDriver(webDriver);
         boolean flag =gaodunViewPage.delete();
         assertTrue(flag);
-    };*/
+    };
     @Test(priority = 29,groups = {"important"})
     public void prod_1() throws Exception{
         gaodunViewPage.setDriver(webDriver);

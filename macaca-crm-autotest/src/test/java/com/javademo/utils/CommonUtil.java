@@ -148,6 +148,30 @@ public class CommonUtil {
         }
         return  dataArray;
     }
+    public JSONArray getDatasBySql(String sql, String  lable) throws  Exception{
+        JSONArray dataArray = new JSONArray();
+        ResultSet rs = testDao.query(sql);
+        int i =1;
+        String first;
+        if (lable.equals("线索编号")){
+             first="线索ID";
+        }else if (lable.equals("订单编号")){
+             first = "订单ID";
+        }else{
+            System.out.println("查询数据库======");
+            return null ;
+        }
+        dataArray.set(0,first);
+        while(rs.next()){
+            if(i<21){
+                dataArray.set(i,rs.getString(lable));
+                i++;
+            }else{
+                break;
+            }
+        }
+        return  dataArray;
+    }
     public JSONArray  getElementByClassName(String  className, MacacaClient webDriver) throws Exception {
         webDriver.sleep(3000);
         JSONObject object = webDriver.execute("var x = document.getElementsByClassName('" + className + "');var arrayObj = new Array();for(var i=0;i<x.length;i++){arrayObj.push(x[i].innerText)};console.log(arrayObj);return arrayObj;");
@@ -158,6 +182,7 @@ public class CommonUtil {
         webDriver.sleep(1000);
         char[] enter = {'\uE007'};
         char[] allow = {'\uE015'};
+        webDriver.keys(new String(allow));
         webDriver.keys(new String(allow));
         webDriver.keys(new String(allow));
         webDriver.keys(new String(enter));
@@ -210,4 +235,35 @@ public class CommonUtil {
         jsonObject.put("name",str1);
         handler.switchWindow(jsonObject);
     }//切换窗口
+
+
+
+
+
+    //sql
+    //view_1 联系人姓名包含：测试es
+    public static final  String  sql_view_1=" SELECT 	CII.ClueNo '线索编号' FROM 	crm.ClueInfo CII JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid JOIN crm.Clue_Status CS ON CS.ClueNo = CII.ClueNo JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE 	CUI.TrueName LIKE '%汪蕾%' AND FIND_IN_SET( 	CII.CourseType, 	TSU.CourseTypes ) > 0 AND TSU.TrueName = 'autotest5'  ORDER BY CII.Create_Time DESC;";
+
+    //view_2 手机号码等于13636534632
+
+    //view_3 营销计划为：测试高级视图0108
+    public static final  String sql_view_3=" SELECT 	CII.ClueNo '线索编号' FROM 	crm.ClueInfo CII JOIN crm.ClueMarketingPaln CMP ON CII.Guid = CMP.ClueGuid JOIN crm_base.Tpo_Base_SourceDetails TBSD ON TBSD.id = CMP.PalnId  JOIN crm.Clue_Status CS ON CS.ClueNo = CII.ClueNo JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID WHERE 	TBSD.FullName='测试高级视图0108' AND FIND_IN_SET( 	CII.CourseType, 	TSU.CourseTypes ) > 0 AND TSU.TrueName = 'autotest5'  ORDER BY CII.Create_Time DESC;";
+
+   // view_4 协作人：autotest8
+   public static final  String sql_view_4=" SELECT 	CII.ClueNo '线索编号' FROM 	crm.ClueInfo CII  JOIN crm.Clue_Status CS ON CS.ClueGuid = CII.Guid  JOIN gd_permission.Tpo_Sys_Users TSU ON CS.Associates = TSU.UserID WHERE TSU.TrueName = 'autotest8' ORDER BY CII.Create_Time DESC;";
+
+    //view_9 产品名称为：测试
+    public static final  String sql_view_9 ="SELECT OI.OrderNo '订单编号' FROM crm_order_center.Order_Info OI JOIN crm_order_center.Order_Product COP ON COP.OrderNo = OI.OrderNo JOIN gd_permission.Tpo_Sys_Users TSU ON OI.`Owner` = TSU.UserID JOIN crm_order_center.Order_Clue_Custom_Student_Relation OCCSR ON OCCSR.OrderNo = OI.OrderNo JOIN crm.ClueInfo CII ON OCCSR.ClueNo = CII.ClueNo JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid WHERE COP.ProductName = '毕马威自动化测试' AND FIND_IN_SET( CII.CourseType, TSU.CourseTypes ) > 0 AND TSU.TrueName = 'autotest5' GROUP BY OI.OrderNo ORDER BY OI.Create_Time DESC;";
+
+   // view_11 订单创建时间为本月
+   public static final String sql_view_11=" SELECT 	OI.OrderNo '订单编号' FROM 	crm_order_center.Order_Info OI JOIN gd_permission.Tpo_Sys_Users TSU ON OI.`Owner` = TSU.UserID JOIN crm_order_center.Order_Clue_Custom_Student_Relation OCCSR ON OCCSR.OrderNo = OI.OrderNo JOIN crm.ClueInfo CII ON OCCSR.ClueNo = CII.ClueNo JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid WHERE 	DATE_FORMAT(OI.Create_Time, '%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')  AND FIND_IN_SET( 	CII.CourseType, 	TSU.CourseTypes ) > 0 AND TSU.TrueName = 'autotest5' GROUP BY 	OI.OrderNo ORDER BY 	OI.Create_Time DESC;";
+
+    //view_13 条件修改为：下次沟通时间：当月；感兴趣的项目：毕马威和阿米巴；职业状态：在校
+    public static final  String sql_view_13=" SELECT 	CII.ClueNo '线索编号'  FROM 	crm.ClueInfo CII JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid JOIN crm.Clue_Status CS ON CS.ClueNo = CII.ClueNo JOIN gd_permission.Tpo_Sys_Users TSU ON CS.ClueOwner = TSU.UserID JOIN crm_base.Tpo_Base_Dictionary TBD ON CII.CourseType = TBD.id JOIN crm.ClueDescribe CD ON CII.Guid = CD.ClueGuid JOIN crm_base.Tpo_Base_Dictionary TBD1 ON CUI.Profession = TBD1.id WHERE 	FIND_IN_SET( 		CII.CourseType, 		TSU.CourseTypes 	) > 0 AND TSU.TrueName = 'autotest5' AND TBD.`Name` IN ('毕马威', '阿米巴') AND CD.NextCommunicateTime BETWEEN DATE_ADD( 	CURDATE(), 	INTERVAL - DAY (curdate()) + 1 DAY ) AND CURDATE() AND TBD1.`Name` = '在校' ORDER BY 	CII.Create_Time DESC;";
+
+    //view_21 条件修改为业绩所属人为某部门
+    public static final  String sql_view_21=" SELECT 	OI.OrderNo '订单编号' FROM 	crm_order_center.Order_Info OI JOIN crm_order_center.Order_Clue_Custom_Student_Relation OCCSR ON OCCSR.OrderNo = OI.OrderNo JOIN crm.ClueInfo CII ON OCCSR.ClueNo = CII.ClueNo JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid JOIN gd_permission.Tpo_Sys_Department_User TSDU ON OI.`Owner` = TSDU.UserId JOIN gd_permission.Tpo_Sys_Departments TSD ON TSD.DeparentId = TSDU.DeparentId WHERE 	TSD.`Name` = '自动化测试' GROUP BY 	OI.OrderNo ORDER BY 	OI.Create_Time DESC;  ";
+
+
+
 }
