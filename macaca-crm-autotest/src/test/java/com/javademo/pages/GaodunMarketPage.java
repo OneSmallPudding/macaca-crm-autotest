@@ -72,6 +72,7 @@ public class GaodunMarketPage extends BasePages {
         webDriver.waitForElementByXPath(GaodunMarketPageUI.ACTIVITY_NAME).sendKeys(marketAct);
         webDriver.waitForElementByXPath(GaodunMarketPageUI.PRICIPAL).click();//负责人
         webDriver.waitForElementByXPath(GaodunMarketPageUI.PRICIPAL1).click();//自动化专用
+        webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunMarketPageUI.PRICIPAL2).click();//8
         webDriver.waitForElementByXPath(GaodunMarketPageUI.ACTIVITY_NAME).click();//点出来点到名称
         webDriver.waitForElementByXPath(GaodunMarketPageUI.PROJECT).sendKeys("毕马威");//所属项目

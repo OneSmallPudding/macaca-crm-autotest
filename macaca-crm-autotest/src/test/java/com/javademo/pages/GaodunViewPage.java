@@ -183,6 +183,7 @@ public class GaodunViewPage extends BasePages {
         commonUtil.refresh(webDriver);
         webDriver.sleep(5000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_VIEW).click();//视图管理
+        webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_SHARE).click();//分享
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_SHARE1).click();//分享的input框
         webDriver.waitForElementByXPath(GaodunViewPageUI.VIEW_SHARE2).click();//输入关键字
@@ -298,6 +299,7 @@ public class GaodunViewPage extends BasePages {
         }else if (action.equals("删除")){
             webDriver.waitForElementByXPath(GaodunViewPageUI.PROD_SEARCHDELETE).click();//删除
         }
+        webDriver.sleep(2000);
         webDriver.waitForElementByXPath(GaodunViewPageUI.PROD_SEARCHSTOPSAVE).click();//提示确定
         webDriver.sleep(2000);
         String values =  webDriver.waitForElementByXPath(GaodunViewPageUI.PROD_STATE).getText();

@@ -29,7 +29,7 @@ public class testOrderImportantFirst extends BaseTest {
     @Test(priority = 9,groups = {"important"})
     public void order_40() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是订金状态的订单才能推送审核","提交");
+        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是定金状态的订单才能推送审核","提交");
         assertTrue(flag);
     };
     @Test(priority = 12,groups = {"important"})
@@ -59,7 +59,7 @@ public class testOrderImportantFirst extends BaseTest {
     @Test(priority = 25,groups = {"important"})
     public void order_44() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是订金状态的订单才能推送审核","提交");
+        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是定金状态的订单才能推送审核","提交");
         assertTrue(flag);
     };
     @Test(priority = 27,groups = {"important"})
@@ -77,7 +77,7 @@ public class testOrderImportantFirst extends BaseTest {
     @Test(priority = 34,groups = {"important"})
     public void order_52() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是订金状态的订单才能推送审核","提交");
+        boolean flag = gaodunOrderPage.orderPay_40("确定","只有完款,且不是定金状态的订单才能推送审核","提交");
         assertTrue(flag);
     };
     @Test(priority = 35,groups = {"important"})
@@ -137,19 +137,19 @@ public class testOrderImportantFirst extends BaseTest {
     @Test(priority = 60,groups = {"important"})
     public void order_105() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag =gaodunOrderPage.orderRefund_105("订金","退款账号不能为空.","保存","","");
+        boolean flag =gaodunOrderPage.orderRefund_105("定金","退款账号不能为空.","保存","","");
         assertTrue(flag);
     }
     @Test(priority = 69,groups = {"important"})
     public void order_109() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag =gaodunOrderPage.orderRefund_105("订金","退款申请保存成功.","保存","","111");
+        boolean flag =gaodunOrderPage.orderRefund_105("定金","退款金额必须大于0.","保存","0","111");
         assertTrue(flag);
     }
     @Test(priority = 72,groups = {"important"})
     public void order_112() throws Exception {
         gaodunOrderPage.setDriver(webDriver);
-        boolean flag =gaodunOrderPage.orderRefund_105("订金","退款申请保存成功，已提交审核.","保存并提交审核","-0.1","111");
+        boolean flag =gaodunOrderPage.orderRefund_105("定金","退款金额必须大于0.","保存并提交审核","-0.1","111");
         assertTrue(flag);
     }
 }

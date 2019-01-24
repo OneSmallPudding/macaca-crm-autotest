@@ -244,8 +244,8 @@ public class GaodunOrderPage extends BasePages{
         nextLine();
         webDriver.sleep(500);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGESAVE).click();//保存
-        webDriver.sleep(2000);
-        String values = webDriver.elementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
+        webDriver.sleep(1000);
+        String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
         System.out.print(values+"-------------------------------------");
         webDriver.sleep(1000);
         commonUtil.close(webDriver);
@@ -839,11 +839,13 @@ public class GaodunOrderPage extends BasePages{
         webDriver.sleep(3000);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_MORE).click();//更多
         webDriver.sleep(2000);
-        if (action.equals(type)&&(type.equals("订金")||type.equals("未完款")||type.equals("已完款")||type.equals("待审核")||type.equals("审核退回")||type.equals("完成"))) {
+        if (action.equals(type)&&(type.equals("定金")||type.equals("未完款")||type.equals("已完款")||type.equals("待审核")||type.equals("审核退回")||type.equals("完成"))) {
             webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_REFUND).click();//退款
             webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_REFUNDORDER).sendKeys(order );//退款账号
             if (!num.equals("")&&num!=null){
                 webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_REFUNDMONEY).clearText();//退款金额
+                webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_REFUNDMONEY).click();//退款金额
+                commonUtil.clear(webDriver);
                 webDriver.waitForElementByXPath(GaodunOrderPageUI.ORDER_REFUNDMONEY).sendKeys(num);//退款金额
             }
             if (BTN.equals("保存")) {

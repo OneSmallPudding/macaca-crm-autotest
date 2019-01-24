@@ -31,7 +31,7 @@ public class BaseTest {
 
     // 屏幕截图的数目，为了实现递增的顺序
     //private int screenNum = 1;
-    MacacaClient webDriver = new MacacaClient();
+    MacacaClient webDriver = null;
 /*
     @Parameters({ "elementTimeout", "elementTimeInterval" })
 */

@@ -10,7 +10,7 @@ public class Config {
 
 
     public static final String databaseUrl         = ""; //test
-     //pre
+  /*   //pre
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:13307";
     public static final String  DATABASE_NAME      = "gaodun_beta";
     public static final String  DATABASE_PWD       = "gasb43Fcsg";
@@ -37,7 +37,7 @@ public class Config {
     public static final String addMessage="https://pre-baiyi.gaodun.com/#/information/messageCreate";//新建短信模板
     public static final String addMarketactivity ="https://pre-baiyi.gaodun.com/#/marketing/add";//新建市场营销活动
     public static final String marketList ="https://pre-baiyi.gaodun.com/#/marketing/list";//市场营销活动列表
-
+*/
 
 
 
@@ -77,7 +77,7 @@ public class Config {
     public static final String  cmsUserName        = "auto_personal_5@gaodun.com";
     public static final String  cmsUserPwd         = "123456q";
 
- /* //   //RPOD
+  //   //RPOD
     public static final String  DATABASE_URL       = "offline.haproxy.gaodunwangxiao.com:9988";
     public static final String  DATABASE_NAME      = "dev";
     public static final String  DATABASE_PWD       = "ji35LEWiR5";
@@ -106,7 +106,7 @@ public class Config {
     public static final String addMessage="https://baiyi.gaodun.com/#/information/messageCreate";//新建短信模板
     public static final String addMarketactivity ="https://baiyi.gaodun.com/#/marketing/add";//新建市场营销活动
     public static final String marketList ="https://baiyi.gaodun.com/#/marketing/list";//市场营销活动列表
-*/
+
 
 
   public static final int     readScore          = 10;

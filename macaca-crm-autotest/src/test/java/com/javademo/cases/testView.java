@@ -48,25 +48,25 @@ public class testView extends BaseTest {
         boolean flag =gaodunViewPage.view_1("11","订单创建时间","");
         assertTrue(flag);
     };
-    @Test(priority = 13,groups = {"important"})
-    public void view_13() throws Exception{
-        gaodunViewPage.setDriver(webDriver);
-        gaodunViewPage.getTime();
-        boolean flag =gaodunViewPage.view_13("13");
-        assertTrue(flag);
-    };
+//    @Test(priority = 13,groups = {"important"})
+//    public void view_13() throws Exception{
+//        gaodunViewPage.setDriver(webDriver);
+//        gaodunViewPage.getTime();
+//        boolean flag =gaodunViewPage.view_13("13");
+//        assertTrue(flag);
+//    };
     @Test(priority = 21,groups = {"important"})
     public void view_21() throws Exception{
         gaodunViewPage.setDriver(webDriver);
         boolean flag =gaodunViewPage.view_13("21");
         assertTrue(flag);
     };
-    @Test(priority = 24,groups = {"important"})
-    public void view_24() throws Exception{
-        gaodunViewPage.setDriver(webDriver);
-        boolean flag =gaodunViewPage.view_13("24");
-        assertTrue(flag);
-    };
+//    @Test(priority = 24,groups = {"important"})
+//    public void view_24() throws Exception{
+//        gaodunViewPage.setDriver(webDriver);
+//        boolean flag =gaodunViewPage.view_13("24");
+//        assertTrue(flag);
+//    };
     @Test(priority = 25,groups = {"important"})
     public void view_25() throws Exception{
         gaodunViewPage.setDriver(webDriver);
