@@ -183,7 +183,7 @@ public class GaodunOrderPage extends BasePages{
             System.out.print("已经选有课程");
         }
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGESAVE).click();//保存
-        webDriver.sleep(1000);
+        webDriver.sleep(1500);
         String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
         System.out.print(values+"-------------------------------------");
         webDriver.sleep(1000);
@@ -244,7 +244,7 @@ public class GaodunOrderPage extends BasePages{
         nextLine();
         webDriver.sleep(500);
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_MYORDERCHANGESAVE).click();//保存
-        webDriver.sleep(1000);
+        webDriver.sleep(1500);
         String values = webDriver.waitForElementByCss(GaodunOrderPageUI.CLUE_RELEVANCEHINT).getText();//提示信息
         System.out.print(values+"-------------------------------------");
         webDriver.sleep(1000);
@@ -679,7 +679,7 @@ public class GaodunOrderPage extends BasePages{
         webDriver.waitForElementByXPath(GaodunOrderPageUI.CLUE_AUDITBTN).click();//确定
         String remark= getRemark(repeatName8);
         webDriver.sleep(2000);
-        System.out.print("========"+remark+"====================---------------------");
+        System.out.print("========"+remark+"=========remark信息===========---------------------");
         if (remark.contains("注册表金额和订单金额不符合")){
             try{
                 webDriver.elementByXPath(GaodunOrderPageUI.CLUE_AUDITSCHOOL).sendKeys("yanzheng");//学校

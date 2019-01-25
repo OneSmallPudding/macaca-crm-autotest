@@ -264,6 +264,4 @@ public class CommonUtil {
     //view_21 条件修改为业绩所属人为某部门
     public static final  String sql_view_21=" SELECT 	OI.OrderNo '订单编号' FROM 	crm_order_center.Order_Info OI JOIN crm_order_center.Order_Clue_Custom_Student_Relation OCCSR ON OCCSR.OrderNo = OI.OrderNo JOIN crm.ClueInfo CII ON OCCSR.ClueNo = CII.ClueNo JOIN crm.CustomInfo CUI ON CII.CustomGuid = CUI.Guid JOIN gd_permission.Tpo_Sys_Department_User TSDU ON OI.`Owner` = TSDU.UserId JOIN gd_permission.Tpo_Sys_Departments TSD ON TSD.DeparentId = TSDU.DeparentId WHERE 	TSD.`Name` = '自动化测试' GROUP BY 	OI.OrderNo ORDER BY 	OI.Create_Time DESC;  ";
 
-
-
 }

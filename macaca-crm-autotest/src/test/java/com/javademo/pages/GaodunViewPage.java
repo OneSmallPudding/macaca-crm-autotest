@@ -42,6 +42,7 @@ public class GaodunViewPage extends BasePages {
             if (status.equals("2")){
                 value = value.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");//转换手机号加密
             }else if (status.equals("9")){
+                webDriver.sleep(2000);
                 commonUtil.nextOneLine( webDriver);
             }
         } else if (status.equals("3")) {
